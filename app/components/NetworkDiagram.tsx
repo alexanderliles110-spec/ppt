@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Globe, Server, Laptop, Cable, FileCode2, ArrowRight } from "lucide-react";
+import { Server, FileCode2 } from "lucide-react";
 
 export default function NetworkDiagram() {
   const [activeLayer, setActiveLayer] = useState<"internet" | "web">("web");

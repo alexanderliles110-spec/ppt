@@ -257,7 +257,7 @@ export default function SlideCard({
               transition={{ delay: 0.22, duration: 0.35 }}
               className={`font-mono text-xs sm:text-base md:text-xl font-bold tracking-wide ${themeStyles.textAccent}`}
             >
-              // {slide.subtitle}
+              {`// ${slide.subtitle}`}
             </motion.p>
           </div>
 
@@ -269,7 +269,7 @@ export default function SlideCard({
             className="p-3.5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-slate-50/90 border border-slate-200 shadow-sm"
           >
             <p className="text-xs sm:text-lg md:text-2xl text-slate-800 font-sans leading-relaxed font-normal">
-              "{slide.content}"
+              &ldquo;{slide.content}&rdquo;
             </p>
           </motion.div>
 

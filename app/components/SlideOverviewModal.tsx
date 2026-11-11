@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { slides, SlideData } from "../data/slides";
+import { slides } from "../data/slides";
 import SlideIcon from "./SlideIcon";
 import { X, Search } from "lucide-react";
 
@@ -90,7 +90,7 @@ export default function SlideOverviewModal({
           <div className="overflow-y-auto p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredSlides.length === 0 ? (
               <div className="col-span-full py-12 text-center text-slate-500 font-mono text-sm">
-                NO SLIDES MATCH QUERY "{searchQuery}"
+                NO SLIDES MATCH QUERY &ldquo;{searchQuery}&rdquo;
               </div>
             ) : (
               filteredSlides.map((s) => {
