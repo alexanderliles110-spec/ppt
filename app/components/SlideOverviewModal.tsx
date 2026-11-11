@@ -30,8 +30,7 @@ export default function SlideOverviewModal({
       s.title.toLowerCase().includes(q) ||
       s.subtitle.toLowerCase().includes(q) ||
       s.content.toLowerCase().includes(q) ||
-      s.category.toLowerCase().includes(q) ||
-      s.tags.some((tag) => tag.toLowerCase().includes(q))
+      s.category.toLowerCase().includes(q)
     );
   });
 

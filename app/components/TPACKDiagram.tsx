@@ -169,252 +169,233 @@ export default function TPACKDiagram() {
   const IconComponent = currentWorld.icon;
 
   return (
-    <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 py-1">
-      {/* Venn Diagram Visual Canvas (Landscape Oval SVG layout) */}
-      <div className="relative w-full max-w-[290px] sm:max-w-[360px] lg:max-w-[400px] aspect-[3/2] flex items-center justify-center shrink-0 mx-auto">
-        <svg
-          viewBox="0 0 600 400"
-          className="w-full h-full overflow-visible drop-shadow-sm select-none"
-        >
-          {/* Outer Dashed Landscape Contexts Oval */}
-          <ellipse
-            cx="300"
-            cy="200"
-            rx="282"
-            ry="185"
-            fill="none"
-            stroke="#818cf8"
-            strokeWidth="2.5"
-            strokeDasharray="12 8"
-            className="opacity-65"
-          />
-          <text
-            x="300"
-            y="372"
-            textAnchor="middle"
-            className="font-mono text-xs fill-slate-500 font-bold tracking-widest uppercase"
+    <div className="w-full flex flex-col gap-4 py-1">
+      {/* Top Row: Interactive Landscape Venn Diagram + Active Selected Component Box */}
+      <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
+        {/* Venn Diagram Visual Canvas (Landscape Oval SVG layout) */}
+        <div className="relative w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[340px] aspect-[3/2] flex items-center justify-center shrink-0 mx-auto">
+          <svg
+            viewBox="0 0 600 400"
+            className="w-full h-full overflow-visible drop-shadow-sm select-none"
           >
-            Contexts
-          </text>
-
-          {/* TK Landscape Circle (Top, Pink) */}
-          <g className="cursor-pointer" onClick={() => setActiveKey("TK")}>
+            {/* Outer Dashed Landscape Contexts Oval */}
             <ellipse
               cx="300"
-              cy="142"
-              rx={activeKey === "TK" ? 142 : 138}
-              ry={activeKey === "TK" ? 95 : 92}
-              fill={activeKey === "TK" ? tpackWorlds.TK.theme.activeFill : tpackWorlds.TK.theme.fillColor}
-              stroke={tpackWorlds.TK.theme.stroke}
-              strokeWidth={activeKey === "TK" ? 4 : 2}
-              className="transition-all duration-300"
+              cy="200"
+              rx="282"
+              ry="185"
+              fill="none"
+              stroke="#818cf8"
+              strokeWidth="2.5"
+              strokeDasharray="12 8"
+              className="opacity-65"
             />
-            <text x="300" y="98" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
-              Technological
+            <text
+              x="300"
+              y="372"
+              textAnchor="middle"
+              className="font-mono text-xs fill-slate-500 font-bold tracking-widest uppercase"
+            >
+              Contexts
             </text>
-            <text x="300" y="115" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
-              Knowledge (TK)
-            </text>
-          </g>
 
-          {/* PK Landscape Circle (Bottom Left, Yellow) */}
-          <g className="cursor-pointer" onClick={() => setActiveKey("PK")}>
-            <ellipse
-              cx="210"
-              cy="238"
-              rx={activeKey === "PK" ? 142 : 138}
-              ry={activeKey === "PK" ? 95 : 92}
-              fill={activeKey === "PK" ? tpackWorlds.PK.theme.activeFill : tpackWorlds.PK.theme.fillColor}
-              stroke={tpackWorlds.PK.theme.stroke}
-              strokeWidth={activeKey === "PK" ? 4 : 2}
-              className="transition-all duration-300"
-            />
-            <text x="155" y="262" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
-              Pedagogical
-            </text>
-            <text x="155" y="279" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
-              Knowledge (PK)
-            </text>
-          </g>
+            {/* TK Landscape Circle (Top, Pink) */}
+            <g className="cursor-pointer" onClick={() => setActiveKey("TK")}>
+              <ellipse
+                cx="300"
+                cy="142"
+                rx={activeKey === "TK" ? 142 : 138}
+                ry={activeKey === "TK" ? 95 : 92}
+                fill={activeKey === "TK" ? tpackWorlds.TK.theme.activeFill : tpackWorlds.TK.theme.fillColor}
+                stroke={tpackWorlds.TK.theme.stroke}
+                strokeWidth={activeKey === "TK" ? 4 : 2}
+                className="transition-all duration-300"
+              />
+              <text x="300" y="98" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+                Technological
+              </text>
+              <text x="300" y="115" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+                Knowledge (TK)
+              </text>
+            </g>
 
-          {/* CK Landscape Circle (Bottom Right, Cyan) */}
-          <g className="cursor-pointer" onClick={() => setActiveKey("CK")}>
-            <ellipse
-              cx="390"
-              cy="238"
-              rx={activeKey === "CK" ? 142 : 138}
-              ry={activeKey === "CK" ? 95 : 92}
-              fill={activeKey === "CK" ? tpackWorlds.CK.theme.activeFill : tpackWorlds.CK.theme.fillColor}
-              stroke={tpackWorlds.CK.theme.stroke}
-              strokeWidth={activeKey === "CK" ? 4 : 2}
-              className="transition-all duration-300"
-            />
-            <text x="445" y="262" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
-              Content
-            </text>
-            <text x="445" y="279" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
-              Knowledge (CK)
-            </text>
-          </g>
+            {/* PK Landscape Circle (Bottom Left, Yellow) */}
+            <g className="cursor-pointer" onClick={() => setActiveKey("PK")}>
+              <ellipse
+                cx="210"
+                cy="238"
+                rx={activeKey === "PK" ? 142 : 138}
+                ry={activeKey === "PK" ? 95 : 92}
+                fill={activeKey === "PK" ? tpackWorlds.PK.theme.activeFill : tpackWorlds.PK.theme.fillColor}
+                stroke={tpackWorlds.PK.theme.stroke}
+                strokeWidth={activeKey === "PK" ? 4 : 2}
+                className="transition-all duration-300"
+              />
+              <text x="155" y="262" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+                Pedagogical
+              </text>
+              <text x="155" y="279" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+                Knowledge (PK)
+              </text>
+            </g>
 
-          {/* Fixed Intersections (Landscape Oval Badges) */}
+            {/* CK Landscape Circle (Bottom Right, Cyan) */}
+            <g className="cursor-pointer" onClick={() => setActiveKey("CK")}>
+              <ellipse
+                cx="390"
+                cy="238"
+                rx={activeKey === "CK" ? 142 : 138}
+                ry={activeKey === "CK" ? 95 : 92}
+                fill={activeKey === "CK" ? tpackWorlds.CK.theme.activeFill : tpackWorlds.CK.theme.fillColor}
+                stroke={tpackWorlds.CK.theme.stroke}
+                strokeWidth={activeKey === "CK" ? 4 : 2}
+                className="transition-all duration-300"
+              />
+              <text x="445" y="262" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+                Content
+              </text>
+              <text x="445" y="279" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+                Knowledge (CK)
+              </text>
+            </g>
 
-          {/* TPK */}
-          <g className="cursor-pointer" onClick={() => setActiveKey("TPK")}>
-            <ellipse
-              cx="232"
-              cy="182"
-              rx={activeKey === "TPK" ? 36 : 30}
-              ry={activeKey === "TPK" ? 26 : 22}
-              fill={activeKey === "TPK" ? "#f43f5e" : "#fb7185"}
-              stroke="#ffffff"
-              strokeWidth={activeKey === "TPK" ? 3.5 : 2}
-              className="transition-all duration-200"
-            />
-            <text x="232" y="186" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
-              TPK
-            </text>
-          </g>
+            {/* TPK */}
+            <g className="cursor-pointer" onClick={() => setActiveKey("TPK")}>
+              <ellipse
+                cx="232"
+                cy="182"
+                rx={activeKey === "TPK" ? 36 : 30}
+                ry={activeKey === "TPK" ? 26 : 22}
+                fill={activeKey === "TPK" ? "#f43f5e" : "#fb7185"}
+                stroke="#ffffff"
+                strokeWidth={activeKey === "TPK" ? 3.5 : 2}
+                className="transition-all duration-200"
+              />
+              <text x="232" y="186" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
+                TPK
+              </text>
+            </g>
 
-          {/* TCK */}
-          <g className="cursor-pointer" onClick={() => setActiveKey("TCK")}>
-            <ellipse
-              cx="368"
-              cy="182"
-              rx={activeKey === "TCK" ? 36 : 30}
-              ry={activeKey === "TCK" ? 26 : 22}
-              fill={activeKey === "TCK" ? "#4f46e5" : "#6366f1"}
-              stroke="#ffffff"
-              strokeWidth={activeKey === "TCK" ? 3.5 : 2}
-              className="transition-all duration-200"
-            />
-            <text x="368" y="186" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
-              TCK
-            </text>
-          </g>
+            {/* TCK */}
+            <g className="cursor-pointer" onClick={() => setActiveKey("TCK")}>
+              <ellipse
+                cx="368"
+                cy="182"
+                rx={activeKey === "TCK" ? 36 : 30}
+                ry={activeKey === "TCK" ? 26 : 22}
+                fill={activeKey === "TCK" ? "#4f46e5" : "#6366f1"}
+                stroke="#ffffff"
+                strokeWidth={activeKey === "TCK" ? 3.5 : 2}
+                className="transition-all duration-200"
+              />
+              <text x="368" y="186" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
+                TCK
+              </text>
+            </g>
 
-          {/* PCK */}
-          <g className="cursor-pointer" onClick={() => setActiveKey("PCK")}>
-            <ellipse
-              cx="300"
-              cy="268"
-              rx={activeKey === "PCK" ? 36 : 30}
-              ry={activeKey === "PCK" ? 26 : 22}
-              fill={activeKey === "PCK" ? "#16a34a" : "#22c55e"}
-              stroke="#ffffff"
-              strokeWidth={activeKey === "PCK" ? 3.5 : 2}
-              className="transition-all duration-200"
-            />
-            <text x="300" y="272" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
-              PCK
-            </text>
-          </g>
+            {/* PCK */}
+            <g className="cursor-pointer" onClick={() => setActiveKey("PCK")}>
+              <ellipse
+                cx="300"
+                cy="268"
+                rx={activeKey === "PCK" ? 36 : 30}
+                ry={activeKey === "PCK" ? 26 : 22}
+                fill={activeKey === "PCK" ? "#16a34a" : "#22c55e"}
+                stroke="#ffffff"
+                strokeWidth={activeKey === "PCK" ? 3.5 : 2}
+                className="transition-all duration-200"
+              />
+              <text x="300" y="272" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
+                PCK
+              </text>
+            </g>
 
-          {/* TPACK Center Core */}
-          <g className="cursor-pointer" onClick={() => setActiveKey("TPACK")}>
-            <ellipse
-              cx="300"
-              cy="208"
-              rx={activeKey === "TPACK" ? 40 : 34}
-              ry={activeKey === "TPACK" ? 28 : 24}
-              fill={activeKey === "TPACK" ? "#9333ea" : "#a855f7"}
-              stroke="#ffffff"
-              strokeWidth={activeKey === "TPACK" ? 4 : 2.5}
-              className="transition-all duration-200"
-            />
-            <text x="300" y="212" textAnchor="middle" className="font-mono text-[11px] font-black fill-white pointer-events-none tracking-tight">
-              TPACK
-            </text>
-          </g>
-        </svg>
-      </div>
-
-      {/* The Seven Components of TPACK (Exact Content Only) */}
-      <div className="flex-1 flex flex-col justify-center space-y-3 w-full">
-        {/* 7 Component Buttons in exact 1-7 order: CK, PK, TK, PCK, TCK, TPK, TPACK */}
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center lg:justify-start">
-          {tpackOrder.map((k) => {
-            const item = tpackWorlds[k];
-            const isSelected = activeKey === k;
-            return (
-              <button
-                key={k}
-                onClick={() => setActiveKey(k)}
-                className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl font-mono text-xs font-bold transition-all duration-200 cursor-pointer ${
-                  isSelected
-                    ? "bg-slate-900 text-white shadow-md scale-105"
-                    : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
-                }`}
-              >
-                {item.num}. {item.title}
-              </button>
-            );
-          })}
+            {/* TPACK Center Core */}
+            <g className="cursor-pointer" onClick={() => setActiveKey("TPACK")}>
+              <ellipse
+                cx="300"
+                cy="208"
+                rx={activeKey === "TPACK" ? 40 : 34}
+                ry={activeKey === "TPACK" ? 28 : 24}
+                fill={activeKey === "TPACK" ? "#9333ea" : "#a855f7"}
+                stroke="#ffffff"
+                strokeWidth={activeKey === "TPACK" ? 4 : 2.5}
+                className="transition-all duration-200"
+              />
+              <text x="300" y="212" textAnchor="middle" className="font-mono text-[11px] font-black fill-white pointer-events-none tracking-tight">
+                TPACK
+              </text>
+            </g>
+          </svg>
         </div>
 
         {/* Selected Component Box (Exact Title & Definition Only) */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentWorld.key}
-            initial={{ opacity: 0, scale: 0.96, y: 8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -8 }}
-            transition={{ type: "spring", stiffness: 320, damping: 26 }}
-            className={`p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/35 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
-          >
-            {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
-            <TechEdBoxDecoration variant="wide" accent="cyan" />
+        <div className="flex-1 w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentWorld.key}
+              initial={{ opacity: 0, scale: 0.96, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -8 }}
+              transition={{ type: "spring", stiffness: 320, damping: 26 }}
+              className={`p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/35 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
+            >
+              {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
+              <TechEdBoxDecoration variant="wide" accent="cyan" />
 
-            {/* Top ambient color glow */}
-            <div
-              className={`absolute top-0 left-0 right-0 h-24 bg-gradient-to-b ${currentWorld.theme.bgGradient} pointer-events-none`}
-            />
+              {/* Top ambient color glow */}
+              <div
+                className={`absolute top-0 left-0 right-0 h-24 bg-gradient-to-b ${currentWorld.theme.bgGradient} pointer-events-none`}
+              />
 
-            <div className="relative z-10 flex items-center space-x-3 border-b border-slate-100 pb-3">
-              <div className={`p-2 sm:p-2.5 rounded-xl bg-slate-50 border ${currentWorld.theme.border} ${currentWorld.theme.textColor} shrink-0`}>
-                <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
+              <div className="relative z-10 flex items-center space-x-3 border-b border-slate-100 pb-3">
+                <div className={`p-2 sm:p-2.5 rounded-xl bg-slate-50 border ${currentWorld.theme.border} ${currentWorld.theme.textColor} shrink-0`}>
+                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+
+                <h3 className="font-mono text-sm sm:text-lg md:text-xl font-black text-slate-900">
+                  <span className={currentWorld.theme.textColor}>
+                    {currentWorld.num}. {currentWorld.title} – {currentWorld.fullName}:
+                  </span>
+                </h3>
               </div>
 
-              <h3 className="font-mono text-sm sm:text-lg md:text-xl font-black text-slate-900">
-                <span className={currentWorld.theme.textColor}>
-                  {currentWorld.num}. {currentWorld.title}
-                </span>
-                {" – "}
-                <span>{currentWorld.fullName}</span>
-              </h3>
-            </div>
+              {/* Exact Definition */}
+              <div className="relative z-10 pt-3">
+                <p className="text-sm sm:text-base md:text-lg text-slate-800 font-sans leading-relaxed">
+                  {currentWorld.desc}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
 
-            {/* Exact Definition */}
-            <div className="relative z-10 pt-3">
-              <p className="text-sm sm:text-base md:text-lg text-slate-800 font-sans leading-relaxed">
-                {currentWorld.desc}
+      {/* All 7 Components Full Definitions (1. CK through 7. TPACK) inside Tech-Ed Boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3">
+        {tpackOrder.map((k) => {
+          const item = tpackWorlds[k];
+          const isSelected = activeKey === k;
+          return (
+            <div
+              key={k}
+              onClick={() => setActiveKey(k)}
+              className={`relative p-3 sm:p-3.5 rounded-xl border text-left transition-all cursor-pointer overflow-hidden ${
+                isSelected
+                  ? `${item.theme.border} bg-gradient-to-br from-white via-sky-50/60 to-indigo-50/50 shadow-md ring-2 ring-sky-400/30`
+                  : "border-slate-200/90 bg-gradient-to-br from-white via-sky-50/20 to-indigo-50/20 hover:border-sky-300"
+              } ${k === "TPACK" ? "md:col-span-2" : ""}`}
+            >
+              <TechEdBoxDecoration variant="card" accent="cyan" />
+              <p className="relative z-10 text-xs sm:text-sm text-slate-800 leading-relaxed font-sans">
+                <strong className={`font-mono ${item.theme.textColor}`}>
+                  {item.num}. {item.title} – {item.fullName}:
+                </strong>{" "}
+                {item.desc}
               </p>
             </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* All 7 Components Quick List (1. CK through 7. TPACK) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 pt-0.5">
-          {tpackOrder.map((k) => {
-            const item = tpackWorlds[k];
-            const isSelected = activeKey === k;
-            return (
-              <div
-                key={k}
-                onClick={() => setActiveKey(k)}
-                className={`px-3 py-1.5 rounded-lg border text-left transition-all cursor-pointer ${
-                  isSelected
-                    ? `${item.theme.border} bg-sky-50/70 shadow-sm font-bold`
-                    : "border-slate-200/80 bg-white/80 hover:bg-slate-50"
-                }`}
-              >
-                <span className="font-mono text-xs sm:text-sm text-slate-900">
-                  <strong className={item.theme.textColor}>{item.num}. {item.title}</strong> – {item.fullName}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
