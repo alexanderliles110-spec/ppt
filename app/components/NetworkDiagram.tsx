@@ -9,14 +9,14 @@ export default function NetworkDiagram() {
   const [activeLayer, setActiveLayer] = useState<"internet" | "web">("web");
 
   return (
-    <div className="w-full flex flex-col md:flex-row items-stretch justify-between gap-3 sm:gap-6 pt-1 sm:pt-3">
+    <div className="w-full flex flex-col md:flex-row items-stretch justify-between gap-3 sm:gap-4 pt-1">
       {/* Visual Interactive Diagram */}
-      <div className="w-full md:w-1/2 flex flex-col gap-2.5 sm:gap-3">
+      <div className="w-full md:w-1/2 flex flex-col gap-2">
         {/* Layer 2: World Wide Web (Software & Documents) */}
         <motion.div
           whileHover={{ scale: 1.01 }}
           onClick={() => setActiveLayer("web")}
-          className={`relative overflow-hidden p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
+          className={`relative overflow-hidden p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
             activeLayer === "web"
               ? "bg-gradient-to-br from-cyan-50 via-white to-sky-50 border-cyan-500 shadow-md"
               : "bg-white border-slate-200 hover:border-slate-300 opacity-75"
@@ -55,7 +55,7 @@ export default function NetworkDiagram() {
         <motion.div
           whileHover={{ scale: 1.01 }}
           onClick={() => setActiveLayer("internet")}
-          className={`relative overflow-hidden p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
+          className={`relative overflow-hidden p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
             activeLayer === "internet"
               ? "bg-gradient-to-br from-amber-50 via-white to-orange-50/40 border-amber-500 shadow-md"
               : "bg-white border-slate-200 hover:border-slate-300 opacity-75"
@@ -87,7 +87,7 @@ export default function NetworkDiagram() {
       </div>
 
       {/* Explanatory Deep-Dive Card */}
-      <div className="relative overflow-hidden w-full md:w-1/2 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-50 via-white to-sky-50/40 border border-slate-200 flex flex-col justify-between min-h-0 sm:min-h-[220px]">
+      <div className="relative overflow-hidden w-full md:w-1/2 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-50 via-white to-sky-50/40 border border-slate-200 flex flex-col justify-between min-h-0">
         <TechEdBoxDecoration variant="wide" accent="cyan" />
         <div className="relative z-10">
           <span className="font-mono text-[10px] sm:text-xs uppercase font-bold text-slate-400 tracking-wider">
