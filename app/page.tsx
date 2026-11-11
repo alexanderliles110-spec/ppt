@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { AnimatePresence } from "framer-motion";
 import { slides } from "./data/slides";
 import SlideCard from "./components/SlideCard";
 import CyberBackground from "./components/CyberBackground";
@@ -155,27 +154,14 @@ export default function PresentationPage() {
       {/* Rich Educational Technology Background (Positioned at z-0, always visible) */}
       <CyberBackground />
 
-      {/* Main Slide Presentation Canvas (Expansive, Fills Screen with 3D Depth) */}
-      <div
-        className="w-full flex-1 flex items-center justify-center relative z-20 my-auto"
-        style={{ perspective: "1400px", transformStyle: "preserve-3d" }}
-      >
-        <AnimatePresence mode="wait" custom={direction}>
-          <SlideCard
-            key={currentSlide.id}
-            slide={currentSlide}
-            direction={direction}
-            totalSlides={totalSlides}
-            onRestart={() => goToSlide(0)}
-            onExit={() => {
-              if (typeof document !== "undefined" && document.fullscreenElement && document.exitFullscreen) {
-                document.exitFullscreen().catch(() => {});
-                setIsFullscreen(false);
-              }
-              goToSlide(0);
-            }}
-          />
-        </AnimatePresence>
+      {/* Main Slide Presentation Canvas (Persistent for PowerPoint Morph transition) */}
+      <div className="w-full flex-1 flex items-center justify-center relative z-20 my-auto">
+        <SlideCard
+          slide={currentSlide}
+          direction={direction}
+          totalSlides={totalSlides}
+          onSelectSlide={goToSlide}
+        />
       </div>
 
       {/* Floating PowerPoint Presenter Controls */}

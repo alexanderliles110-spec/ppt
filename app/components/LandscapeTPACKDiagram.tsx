@@ -1,223 +1,263 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import TechEdBoxDecoration from "./TechEdBoxDecoration";
+import { TPACKKey } from "../data/slides";
 
-interface DomainItem {
-  key: string;
-  label: string;
-  border: string;
-  activeBorder: string;
-  accent: "cyan" | "amber" | "pink" | "indigo";
+interface LandscapeTPACKDiagramProps {
+  activeKey?: TPACKKey;
+  onSelectKey?: (key: TPACKKey) => void;
 }
 
-const tpackList: DomainItem[] = [
-  {
-    key: "CK",
-    label: "CK – Content Knowledge",
-    border: "border-cyan-200/90",
-    activeBorder: "border-cyan-500 ring-2 ring-cyan-500/25 bg-cyan-50/60",
-    accent: "cyan"
-  },
-  {
-    key: "PK",
-    label: "PK – Pedagogical Knowledge",
-    border: "border-amber-200/90",
-    activeBorder: "border-amber-500 ring-2 ring-amber-500/25 bg-amber-50/60",
-    accent: "amber"
-  },
-  {
-    key: "TK",
-    label: "TK – Technological Knowledge",
-    border: "border-pink-200/90",
-    activeBorder: "border-pink-500 ring-2 ring-pink-500/25 bg-pink-50/60",
-    accent: "pink"
-  },
-  {
-    key: "PCK",
-    label: "PCK – Pedagogical Content Knowledge",
-    border: "border-emerald-200/90",
-    activeBorder: "border-emerald-500 ring-2 ring-emerald-500/25 bg-emerald-50/60",
-    accent: "cyan"
-  },
-  {
-    key: "TCK",
-    label: "TCK – Technological Content Knowledge",
-    border: "border-indigo-200/90",
-    activeBorder: "border-indigo-500 ring-2 ring-indigo-500/25 bg-indigo-50/60",
-    accent: "indigo"
-  },
-  {
-    key: "TPK",
-    label: "TPK – Technological Pedagogical Knowledge",
-    border: "border-rose-200/90",
-    activeBorder: "border-rose-500 ring-2 ring-rose-500/25 bg-rose-50/60",
-    accent: "pink"
-  },
-  {
-    key: "TPACK",
-    label: "TPACK",
-    border: "border-purple-300/90",
-    activeBorder: "border-purple-600 ring-2 ring-purple-500/25 bg-purple-50/60",
-    accent: "indigo"
-  }
-];
-
-export default function LandscapeTPACKDiagram() {
-  const [selectedKey, setSelectedKey] = useState<string>("TPACK");
-
+export default function LandscapeTPACKDiagram({
+  activeKey = "ALL",
+  onSelectKey
+}: LandscapeTPACKDiagramProps) {
   // Landscape ellipse geometry (true horizontal oval shape)
   const tk = { cx: 430, cy: 132, rx: 142, ry: 74 };
   const pk = { cx: 345, cy: 205, rx: 142, ry: 74 };
   const ck = { cx: 515, cy: 205, rx: 142, ry: 74 };
 
+  // PowerPoint Morph Camera Transforms (Smooth Zoom, Pan & Subtle Perspective Tilt per Slide)
+  const cameraTargets: Record<TPACKKey, { scale: number; x: number; y: number; rotate: number }> = {
+    ALL: { scale: 1, x: 0, y: 0, rotate: 0 },
+    CK: { scale: 1.28, x: -90, y: -28, rotate: -1.5 },
+    PK: { scale: 1.28, x: 90, y: -28, rotate: 1.5 },
+    TK: { scale: 1.28, x: 0, y: 48, rotate: 0 },
+    PCK: { scale: 1.42, x: 0, y: -52, rotate: -1 },
+    TCK: { scale: 1.42, x: -72, y: 22, rotate: 1 },
+    TPK: { scale: 1.42, x: 72, y: 22, rotate: -1 },
+    TPACK: { scale: 1.52, x: 0, y: 6, rotate: 0 }
+  };
+
+  // Spotlight Halo Coordinates for Morphing Focus Ring
+  const haloTargets: Record<Exclude<TPACKKey, "ALL">, { cx: number; cy: number; rx: number; ry: number; stroke: string }> = {
+    CK: { cx: ck.cx, cy: ck.cy, rx: ck.rx + 8, ry: ck.ry + 8, stroke: "#06b6d4" },
+    PK: { cx: pk.cx, cy: pk.cy, rx: pk.rx + 8, ry: pk.ry + 8, stroke: "#eab308" },
+    TK: { cx: tk.cx, cy: tk.cy, rx: tk.rx + 8, ry: tk.ry + 8, stroke: "#ec4899" },
+    PCK: { cx: 430, cy: 205, rx: 66, ry: 54, stroke: "#10b981" },
+    TCK: { cx: 482, cy: 162, rx: 68, ry: 48, stroke: "#6366f1" },
+    TPK: { cx: 378, cy: 162, rx: 68, ry: 48, stroke: "#f43f5e" },
+    TPACK: { cx: 430, cy: 176, rx: 58, ry: 42, stroke: "#7c3aed" }
+  };
+
+  const cam = cameraTargets[activeKey] || cameraTargets.ALL;
+  const isAll = activeKey === "ALL";
+
+  const getRegionOpacity = (region: TPACKKey) => {
+    if (isAll) return 1;
+    if (activeKey === region) return 1;
+    if (activeKey === "PCK" && (region === "PK" || region === "CK")) return 0.55;
+    if (activeKey === "TCK" && (region === "TK" || region === "CK")) return 0.55;
+    if (activeKey === "TPK" && (region === "TK" || region === "PK")) return 0.55;
+    if (activeKey === "TPACK" && (region === "TK" || region === "PK" || region === "CK")) return 0.65;
+    return 0.25;
+  };
+
+  const handleSelect = (k: TPACKKey) => {
+    if (onSelectKey) onSelectKey(k);
+  };
+
+  const activeHalo = activeKey !== "ALL" ? haloTargets[activeKey] : null;
+
   return (
-    <div className="w-full space-y-4">
-      {/* Landscape TPACK Venn Diagram Box */}
-      <div className="w-full bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/40 rounded-2xl border border-sky-200/90 shadow-md p-3.5 sm:p-5 relative overflow-hidden group">
-        {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
-        <TechEdBoxDecoration variant="diagram" accent="cyan" />
+    <motion.div
+      layout
+      transition={{ type: "spring", stiffness: 130, damping: 22, mass: 0.9 }}
+      className="w-full bg-gradient-to-br from-white via-sky-50/40 to-indigo-50/45 rounded-2xl border border-sky-200/90 shadow-lg p-3 sm:p-4 relative overflow-hidden group"
+    >
+      {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
+      <TechEdBoxDecoration variant="diagram" accent="cyan" />
 
-        {/* High-Tech HUD Corner Brackets */}
-        <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-blue-500 pointer-events-none z-10" />
-        <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-blue-500 pointer-events-none z-10" />
-        <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-blue-500 pointer-events-none z-10" />
-        <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-blue-500 pointer-events-none z-10" />
+      {/* High-Tech HUD Corner Brackets */}
+      <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-blue-500 pointer-events-none z-10" />
+      <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-blue-500 pointer-events-none z-10" />
+      <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-blue-500 pointer-events-none z-10" />
+      <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-blue-500 pointer-events-none z-10" />
 
-        {/* Landscape TPACK Venn Diagram SVG */}
-        <div className="relative z-10 w-full flex flex-col items-center">
-          <svg
-            viewBox="0 0 860 356"
-            className="w-full h-auto max-h-[220px] sm:max-h-[260px] select-none overflow-visible"
+      {/* Landscape TPACK Venn Diagram SVG with PowerPoint Morph Camera */}
+      <div className="relative z-10 w-full flex flex-col items-center overflow-hidden rounded-xl">
+        <svg
+          viewBox="0 0 860 356"
+          className="w-full h-auto max-h-[240px] sm:max-h-[290px] select-none overflow-visible"
+        >
+          <defs>
+            <clipPath id="landscape-clip-tk">
+              <ellipse cx={tk.cx} cy={tk.cy} rx={tk.rx} ry={tk.ry} />
+            </clipPath>
+            <clipPath id="landscape-clip-pk">
+              <ellipse cx={pk.cx} cy={pk.cy} rx={pk.rx} ry={pk.ry} />
+            </clipPath>
+            <clipPath id="landscape-clip-ck">
+              <ellipse cx={ck.cx} cy={ck.cy} rx={ck.rx} ry={ck.ry} />
+            </clipPath>
+
+            <marker
+              id="arrow-dot"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e293b" />
+            </marker>
+          </defs>
+
+          {/* Morphing Camera Group: Smoothly Pans, Zooms, and Tilts across slides */}
+          <motion.g
+            initial={false}
+            animate={{
+              scale: cam.scale,
+              x: cam.x,
+              y: cam.y,
+              rotate: cam.rotate
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 110,
+              damping: 20,
+              mass: 0.95
+            }}
+            style={{ transformOrigin: "430px 178px" }}
           >
-            <defs>
-              <clipPath id="landscape-clip-tk">
-                <ellipse cx={tk.cx} cy={tk.cy} rx={tk.rx} ry={tk.ry} />
-              </clipPath>
-              <clipPath id="landscape-clip-pk">
-                <ellipse cx={pk.cx} cy={pk.cy} rx={pk.rx} ry={pk.ry} />
-              </clipPath>
-              <clipPath id="landscape-clip-ck">
-                <ellipse cx={ck.cx} cy={ck.cy} rx={ck.rx} ry={ck.ry} />
-              </clipPath>
-              <clipPath id="landscape-clip-tk-pk" clipPathUnits="userSpaceOnUse">
-                <ellipse cx={pk.cx} cy={pk.cy} rx={pk.rx} ry={pk.ry} clipPath="url(#landscape-clip-tk)" />
-              </clipPath>
-
-              <marker
-                id="arrow-dot"
-                viewBox="0 0 10 10"
-                refX="8"
-                refY="5"
-                markerWidth="6"
-                markerHeight="6"
-                orient="auto-start-reverse"
-              >
-                <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e293b" />
-              </marker>
-            </defs>
-
             {/* Outer Landscape Dashed "Contexts" Oval */}
             <ellipse
               cx="430"
               cy="178"
               rx="408"
               ry="170"
-              fill="rgba(255, 255, 255, 0.72)"
+              fill="rgba(255, 255, 255, 0.78)"
               stroke="#818cf8"
               strokeWidth="3.5"
               strokeDasharray="16 10"
             />
 
             {/* Base Circle 1: TK (Top, Pink/Lavender) */}
-            <ellipse
+            <motion.ellipse
               cx={tk.cx}
               cy={tk.cy}
               rx={tk.rx}
               ry={tk.ry}
-              fill={selectedKey === "TK" ? "#f472b6" : "#f5d0fe"}
-              className="cursor-pointer transition-colors duration-200 hover:opacity-90"
-              onClick={() => setSelectedKey("TK")}
+              initial={false}
+              animate={{
+                fill: activeKey === "TK" ? "#f472b6" : "#f5d0fe",
+                opacity: getRegionOpacity("TK")
+              }}
+              transition={{ duration: 0.45 }}
+              className="cursor-pointer"
+              onClick={() => handleSelect("TK")}
             />
 
             {/* Base Circle 2: PK (Bottom Left, Soft Yellow) */}
-            <ellipse
+            <motion.ellipse
               cx={pk.cx}
               cy={pk.cy}
               rx={pk.rx}
               ry={pk.ry}
-              fill={selectedKey === "PK" ? "#facc15" : "#fef08a"}
-              className="cursor-pointer transition-colors duration-200 hover:opacity-90"
-              onClick={() => setSelectedKey("PK")}
+              initial={false}
+              animate={{
+                fill: activeKey === "PK" ? "#facc15" : "#fef08a",
+                opacity: getRegionOpacity("PK")
+              }}
+              transition={{ duration: 0.45 }}
+              className="cursor-pointer"
+              onClick={() => handleSelect("PK")}
             />
 
             {/* Base Circle 3: CK (Bottom Right, Soft Cyan) */}
-            <ellipse
+            <motion.ellipse
               cx={ck.cx}
               cy={ck.cy}
               rx={ck.rx}
               ry={ck.ry}
-              fill={selectedKey === "CK" ? "#22d3ee" : "#99f6e4"}
-              className="cursor-pointer transition-colors duration-200 hover:opacity-90"
-              onClick={() => setSelectedKey("CK")}
+              initial={false}
+              animate={{
+                fill: activeKey === "CK" ? "#22d3ee" : "#99f6e4",
+                opacity: getRegionOpacity("CK")
+              }}
+              transition={{ duration: 0.45 }}
+              className="cursor-pointer"
+              onClick={() => handleSelect("CK")}
             />
 
             {/* Overlap 1: TPK (TK ∩ PK - Coral Red/Pink) */}
             <g clipPath="url(#landscape-clip-tk)">
-              <ellipse
+              <motion.ellipse
                 cx={pk.cx}
                 cy={pk.cy}
                 rx={pk.rx}
                 ry={pk.ry}
-                fill={selectedKey === "TPK" ? "#f43f5e" : "#fb7185"}
-                className="cursor-pointer transition-colors duration-200"
-                onClick={() => setSelectedKey("TPK")}
+                initial={false}
+                animate={{
+                  fill: activeKey === "TPK" ? "#f43f5e" : "#fb7185",
+                  opacity: getRegionOpacity("TPK")
+                }}
+                transition={{ duration: 0.45 }}
+                className="cursor-pointer"
+                onClick={() => handleSelect("TPK")}
               />
             </g>
 
             {/* Overlap 2: TCK (TK ∩ CK - Periwinkle Blue/Indigo) */}
             <g clipPath="url(#landscape-clip-tk)">
-              <ellipse
+              <motion.ellipse
                 cx={ck.cx}
                 cy={ck.cy}
                 rx={ck.rx}
                 ry={ck.ry}
-                fill={selectedKey === "TCK" ? "#4f46e5" : "#818cf8"}
-                className="cursor-pointer transition-colors duration-200"
-                onClick={() => setSelectedKey("TCK")}
+                initial={false}
+                animate={{
+                  fill: activeKey === "TCK" ? "#4f46e5" : "#818cf8",
+                  opacity: getRegionOpacity("TCK")
+                }}
+                transition={{ duration: 0.45 }}
+                className="cursor-pointer"
+                onClick={() => handleSelect("TCK")}
               />
             </g>
 
             {/* Overlap 3: PCK (PK ∩ CK - Sage Green) */}
             <g clipPath="url(#landscape-clip-pk)">
-              <ellipse
+              <motion.ellipse
                 cx={ck.cx}
                 cy={ck.cy}
                 rx={ck.rx}
                 ry={ck.ry}
-                fill={selectedKey === "PCK" ? "#10b981" : "#86efac"}
-                className="cursor-pointer transition-colors duration-200"
-                onClick={() => setSelectedKey("PCK")}
+                initial={false}
+                animate={{
+                  fill: activeKey === "PCK" ? "#10b981" : "#86efac",
+                  opacity: getRegionOpacity("PCK")
+                }}
+                transition={{ duration: 0.45 }}
+                className="cursor-pointer"
+                onClick={() => handleSelect("PCK")}
               />
             </g>
 
             {/* Center Overlap 4: TPACK (TK ∩ PK ∩ CK - Dark Olive / Rich Core) */}
             <g clipPath="url(#landscape-clip-tk)">
               <g clipPath="url(#landscape-clip-pk)">
-                <ellipse
+                <motion.ellipse
                   cx={ck.cx}
                   cy={ck.cy}
                   rx={ck.rx}
                   ry={ck.ry}
-                  fill={selectedKey === "TPACK" ? "#6d28d9" : "#655a30"}
-                  className="cursor-pointer transition-colors duration-200"
-                  onClick={() => setSelectedKey("TPACK")}
+                  initial={false}
+                  animate={{
+                    fill: activeKey === "TPACK" ? "#7c3aed" : "#655a30",
+                    opacity: getRegionOpacity("TPACK")
+                  }}
+                  transition={{ duration: 0.45 }}
+                  className="cursor-pointer"
+                  onClick={() => handleSelect("TPACK")}
                 />
               </g>
             </g>
 
-            {/* Crisp Black/Slate Outlines for the 3 Landscape Ellipses */}
+            {/* Crisp Outlines for the 3 Landscape Ellipses */}
             <ellipse
               cx={tk.cx}
               cy={tk.cy}
@@ -225,7 +265,7 @@ export default function LandscapeTPACKDiagram() {
               ry={tk.ry}
               fill="none"
               stroke="#1e293b"
-              strokeWidth="2"
+              strokeWidth={activeKey === "TK" ? "3" : "2"}
               className="pointer-events-none"
             />
             <ellipse
@@ -235,7 +275,7 @@ export default function LandscapeTPACKDiagram() {
               ry={pk.ry}
               fill="none"
               stroke="#1e293b"
-              strokeWidth="2"
+              strokeWidth={activeKey === "PK" ? "3" : "2"}
               className="pointer-events-none"
             />
             <ellipse
@@ -245,13 +285,36 @@ export default function LandscapeTPACKDiagram() {
               ry={ck.ry}
               fill="none"
               stroke="#1e293b"
-              strokeWidth="2"
+              strokeWidth={activeKey === "CK" ? "3" : "2"}
               className="pointer-events-none"
             />
 
+            {/* Morphing Spotlight Focus Halo */}
+            {activeHalo && (
+              <motion.ellipse
+                initial={false}
+                animate={{
+                  cx: activeHalo.cx,
+                  cy: activeHalo.cy,
+                  rx: activeHalo.rx,
+                  ry: activeHalo.ry,
+                  stroke: activeHalo.stroke
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 140,
+                  damping: 18
+                }}
+                fill="none"
+                strokeWidth="4"
+                strokeDasharray="10 6"
+                className="pointer-events-none"
+              />
+            )}
+
             {/* PRIMARY LABELS INSIDE THE 3 LANDSCAPE CIRCLES */}
             {/* TK Label */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TK")}>
+            <g className="cursor-pointer" onClick={() => handleSelect("TK")}>
               <text x="430" y="92" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
                 Technological
               </text>
@@ -264,7 +327,7 @@ export default function LandscapeTPACKDiagram() {
             </g>
 
             {/* PK Label */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("PK")}>
+            <g className="cursor-pointer" onClick={() => handleSelect("PK")}>
               <text x="275" y="205" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
                 Pedagogical
               </text>
@@ -277,7 +340,7 @@ export default function LandscapeTPACKDiagram() {
             </g>
 
             {/* CK Label */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("CK")}>
+            <g className="cursor-pointer" onClick={() => handleSelect("CK")}>
               <text x="585" y="205" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
                 Content
               </text>
@@ -292,7 +355,7 @@ export default function LandscapeTPACKDiagram() {
             {/* POINTER ARROWS & INTERSECTION LABELS */}
 
             {/* 1. Top TPACK Label & Bent Pointer Line to Center */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TPACK")}>
+            <g className="cursor-pointer" onClick={() => handleSelect("TPACK")}>
               <text x="430" y="33" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
                 Technological Pedagogical Content
               </text>
@@ -310,7 +373,7 @@ export default function LandscapeTPACKDiagram() {
             </g>
 
             {/* 2. Left TPK Label & Pointer Line */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TPK")}>
+            <g className="cursor-pointer" onClick={() => handleSelect("TPK")}>
               <text x="145" y="102" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
                 Technological
               </text>
@@ -333,7 +396,7 @@ export default function LandscapeTPACKDiagram() {
             </g>
 
             {/* 3. Right TCK Label & Pointer Line */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TCK")}>
+            <g className="cursor-pointer" onClick={() => handleSelect("TCK")}>
               <text x="715" y="102" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
                 Technological
               </text>
@@ -356,7 +419,7 @@ export default function LandscapeTPACKDiagram() {
             </g>
 
             {/* 4. Bottom PCK Label & Pointer Line */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("PCK")}>
+            <g className="cursor-pointer" onClick={() => handleSelect("PCK")}>
               <circle cx="430" cy="272" r="3" fill="#1e293b" />
               <line
                 x1="430"
@@ -381,31 +444,9 @@ export default function LandscapeTPACKDiagram() {
             >
               Contexts
             </text>
-          </svg>
-        </div>
+          </motion.g>
+        </svg>
       </div>
-
-      {/* Exact List of 7 TPACK Abbreviations in Technology Education Boxes */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3">
-        {tpackList.map((item) => {
-          const isSelected = selectedKey === item.key;
-          return (
-            <motion.div
-              key={item.key}
-              whileHover={{ scale: 1.01 }}
-              onClick={() => setSelectedKey(item.key)}
-              className={`relative px-4 py-3 rounded-xl border bg-gradient-to-br from-white via-sky-50/30 to-indigo-50/30 shadow-sm overflow-hidden cursor-pointer transition-all ${
-                isSelected ? item.activeBorder : item.border
-              } ${item.key === "TPACK" ? "sm:col-span-2 lg:col-span-3 text-center" : ""}`}
-            >
-              <TechEdBoxDecoration variant="card" accent={item.accent} />
-              <span className="relative z-10 font-mono text-xs sm:text-sm md:text-base font-bold text-slate-900">
-                {item.label}
-              </span>
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
+    </motion.div>
   );
 }
