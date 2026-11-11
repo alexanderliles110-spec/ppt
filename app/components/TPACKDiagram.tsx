@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import TechEdBoxDecoration from "./TechEdBoxDecoration";
 import {
   Cpu,
   GraduationCap,
@@ -364,8 +365,11 @@ export default function TPACKDiagram() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ type: "spring", stiffness: 320, damping: 26 }}
-            className={`p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-white/95 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
+            className={`p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/35 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
           >
+            {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
+            <TechEdBoxDecoration variant="wide" accent="cyan" />
+
             {/* High-Tech HUD Corner Accents */}
             <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-slate-300 pointer-events-none" />
             <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-slate-300 pointer-events-none" />

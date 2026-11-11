@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, GraduationCap, BookOpen, Layers, Atom, Network, Globe2 } from "lucide-react";
+import TechEdBoxDecoration from "./TechEdBoxDecoration";
 
 interface DomainInfo {
   key: string;
@@ -84,15 +85,18 @@ export default function LandscapeTPACKDiagram() {
   const ck = { cx: 515, cy: 205, rx: 142, ry: 74 };
 
   return (
-    <div className="w-full bg-white/95 rounded-2xl border border-slate-200/90 shadow-md p-3 sm:p-4 relative overflow-hidden group">
+    <div className="w-full bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/40 rounded-2xl border border-sky-200/90 shadow-md p-3 sm:p-4 relative overflow-hidden group">
+      {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
+      <TechEdBoxDecoration variant="diagram" accent="cyan" />
+
       {/* High-Tech HUD Corner Brackets */}
-      <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-blue-500 pointer-events-none" />
-      <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-blue-500 pointer-events-none" />
-      <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-blue-500 pointer-events-none" />
-      <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-blue-500 pointer-events-none" />
+      <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-blue-500 pointer-events-none z-10" />
+      <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-blue-500 pointer-events-none z-10" />
+      <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-blue-500 pointer-events-none z-10" />
+      <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-blue-500 pointer-events-none z-10" />
 
       {/* Top Tech Header Bar */}
-      <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2 mb-2 font-mono text-[10px] sm:text-xs">
+      <div className="relative z-10 flex items-center justify-between gap-2 border-b border-slate-200/70 pb-2 mb-2 font-mono text-[10px] sm:text-xs">
         <div className="flex items-center space-x-2">
           <span className="flex space-x-1">
             <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
@@ -109,9 +113,9 @@ export default function LandscapeTPACKDiagram() {
       </div>
 
       {/* Landscape TPACK Venn Diagram SVG */}
-      <div className="relative w-full flex flex-col items-center">
+      <div className="relative z-10 w-full flex flex-col items-center">
         <svg
-          viewBox="0 0 860 350"
+          viewBox="0 0 860 356"
           className="w-full h-auto max-h-[290px] sm:max-h-[320px] select-none overflow-visible"
         >
           <defs>
@@ -145,10 +149,10 @@ export default function LandscapeTPACKDiagram() {
           {/* Outer Landscape Dashed "Contexts" Oval */}
           <ellipse
             cx="430"
-            cy="175"
-            rx="405"
-            ry="162"
-            fill="#ffffff"
+            cy="178"
+            rx="408"
+            ry="170"
+            fill="rgba(255, 255, 255, 0.72)"
             stroke="#818cf8"
             strokeWidth="3.5"
             strokeDasharray="16 10"
@@ -317,15 +321,15 @@ export default function LandscapeTPACKDiagram() {
 
           {/* 1. Top TPACK Label & Bent Pointer Line to Center */}
           <g className="cursor-pointer" onClick={() => setSelectedKey("TPACK")}>
-            <text x="430" y="24" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+            <text x="430" y="33" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
               Technological Pedagogical Content
             </text>
-            <text x="430" y="40" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+            <text x="430" y="48" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
               Knowledge (TPACK)
             </text>
-            <circle cx="515" cy="36" r="3" fill="#1e293b" />
+            <circle cx="515" cy="44" r="3" fill="#1e293b" />
             <polyline
-              points="515,36 555,82 435,172"
+              points="515,44 555,86 435,172"
               fill="none"
               stroke="#1e293b"
               strokeWidth="1.6"

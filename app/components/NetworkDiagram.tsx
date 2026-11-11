@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Server, FileCode2 } from "lucide-react";
+import TechEdBoxDecoration from "./TechEdBoxDecoration";
 
 export default function NetworkDiagram() {
   const [activeLayer, setActiveLayer] = useState<"internet" | "web">("web");
@@ -15,13 +16,14 @@ export default function NetworkDiagram() {
         <motion.div
           whileHover={{ scale: 1.01 }}
           onClick={() => setActiveLayer("web")}
-          className={`p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
+          className={`relative overflow-hidden p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
             activeLayer === "web"
-              ? "bg-cyan-50 border-cyan-500 shadow-md"
+              ? "bg-gradient-to-br from-cyan-50 via-white to-sky-50 border-cyan-500 shadow-md"
               : "bg-white border-slate-200 hover:border-slate-300 opacity-75"
           }`}
         >
-          <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+          <TechEdBoxDecoration variant="card" accent="cyan" />
+          <div className="relative z-10 flex items-center justify-between mb-1.5 sm:mb-2">
             <div className="flex items-center space-x-2">
               <div className="p-1.5 sm:p-2 rounded-lg bg-cyan-100 text-cyan-700">
                 <FileCode2 className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -39,7 +41,7 @@ export default function NetworkDiagram() {
               <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse" />
             )}
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pl-7 sm:pl-9 leading-relaxed">
+          <p className="relative z-10 text-xs sm:text-sm text-slate-600 font-sans pl-7 sm:pl-9 leading-relaxed">
             The graphical environment that allows users to access, navigate, and view multimedia documents using URLs and HTTP.
           </p>
         </motion.div>
@@ -53,13 +55,14 @@ export default function NetworkDiagram() {
         <motion.div
           whileHover={{ scale: 1.01 }}
           onClick={() => setActiveLayer("internet")}
-          className={`p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
+          className={`relative overflow-hidden p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border-2 transition-all cursor-pointer ${
             activeLayer === "internet"
-              ? "bg-amber-50 border-amber-500 shadow-md"
+              ? "bg-gradient-to-br from-amber-50 via-white to-orange-50/40 border-amber-500 shadow-md"
               : "bg-white border-slate-200 hover:border-slate-300 opacity-75"
           }`}
         >
-          <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+          <TechEdBoxDecoration variant="card" accent="amber" />
+          <div className="relative z-10 flex items-center justify-between mb-1.5 sm:mb-2">
             <div className="flex items-center space-x-2">
               <div className="p-1.5 sm:p-2 rounded-lg bg-amber-100 text-amber-700">
                 <Server className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -77,15 +80,16 @@ export default function NetworkDiagram() {
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
             )}
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 font-sans pl-7 sm:pl-9 leading-relaxed">
+          <p className="relative z-10 text-xs sm:text-sm text-slate-600 font-sans pl-7 sm:pl-9 leading-relaxed">
             The massive global infrastructure of connected computers, undersea fiber optic cables, routers, and satellites.
           </p>
         </motion.div>
       </div>
 
       {/* Explanatory Deep-Dive Card */}
-      <div className="w-full md:w-1/2 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between min-h-0 sm:min-h-[220px]">
-        <div>
+      <div className="relative overflow-hidden w-full md:w-1/2 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-slate-50 via-white to-sky-50/40 border border-slate-200 flex flex-col justify-between min-h-0 sm:min-h-[220px]">
+        <TechEdBoxDecoration variant="wide" accent="cyan" />
+        <div className="relative z-10">
           <span className="font-mono text-[10px] sm:text-xs uppercase font-bold text-slate-400 tracking-wider">
             Layer Breakdown
           </span>
@@ -101,7 +105,7 @@ export default function NetworkDiagram() {
           </p>
         </div>
 
-        <div className="pt-3 sm:pt-4 border-t border-slate-200 mt-2 sm:mt-3 flex items-center justify-between text-[11px] sm:text-xs font-mono text-slate-500">
+        <div className="relative z-10 pt-3 sm:pt-4 border-t border-slate-200 mt-2 sm:mt-3 flex items-center justify-between text-[11px] sm:text-xs font-mono text-slate-500">
           <span>Tap either layer to toggle</span>
           <span className="font-bold text-slate-700">INTERACTIVE // ARCHITECTURE</span>
         </div>
