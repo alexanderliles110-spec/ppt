@@ -85,7 +85,7 @@ export default function LandscapeTPACKDiagram() {
   const ck = { cx: 515, cy: 205, rx: 142, ry: 74 };
 
   return (
-    <div className="w-full bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/40 rounded-2xl border border-sky-200/90 shadow-md p-3 sm:p-4 relative overflow-hidden group">
+    <div className="w-full bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/40 rounded-2xl border border-sky-200/90 shadow-md p-2.5 sm:p-3.5 relative overflow-hidden group">
       {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
       <TechEdBoxDecoration variant="diagram" accent="cyan" />
 
@@ -96,12 +96,12 @@ export default function LandscapeTPACKDiagram() {
       <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-blue-500 pointer-events-none z-10" />
 
       {/* Top Tech Header Bar */}
-      <div className="relative z-10 flex items-center justify-between gap-2 border-b border-slate-200/70 pb-2 mb-2 font-mono text-[10px] sm:text-xs">
+      <div className="relative z-10 flex items-center justify-between gap-2 border-b border-slate-200/70 pb-1.5 mb-1.5 font-mono text-[9px] sm:text-[11px]">
         <div className="flex items-center space-x-2">
           <span className="flex space-x-1">
-            <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
-            <span className="w-2 h-2 rounded-full bg-amber-400" />
-            <span className="w-2 h-2 rounded-full bg-cyan-400" />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-500 animate-pulse" />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400" />
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400" />
           </span>
           <span className="font-bold tracking-wider text-slate-700 uppercase">
             {"// TPACK.LANDSCAPE_FRAMEWORK_MODEL"}
@@ -116,7 +116,7 @@ export default function LandscapeTPACKDiagram() {
       <div className="relative z-10 w-full flex flex-col items-center">
         <svg
           viewBox="0 0 860 356"
-          className="w-full h-auto max-h-[290px] sm:max-h-[320px] select-none overflow-visible"
+          className="w-full h-auto max-h-[195px] sm:max-h-[230px] select-none overflow-visible"
         >
           <defs>
             <clipPath id="landscape-clip-tk">

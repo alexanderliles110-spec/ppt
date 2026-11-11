@@ -175,9 +175,9 @@ export default function TPACKDiagram() {
   const IconComponent = currentWorld.icon;
 
   return (
-    <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-6 py-1 sm:py-2">
+    <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-5 py-0.5 sm:py-1">
       {/* Venn Diagram Visual Canvas (Landscape Oval SVG layout, mobile responsive) */}
-      <div className="relative w-full max-w-[340px] sm:max-w-[440px] lg:max-w-[480px] aspect-[3/2] flex items-center justify-center shrink-0 mx-auto">
+      <div className="relative w-full max-w-[250px] sm:max-w-[320px] lg:max-w-[360px] aspect-[3/2] flex items-center justify-center shrink-0 mx-auto">
         <svg
           viewBox="0 0 600 400"
           className="w-full h-full overflow-visible drop-shadow-sm select-none"
@@ -365,7 +365,7 @@ export default function TPACKDiagram() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ type: "spring", stiffness: 320, damping: 26 }}
-            className={`p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/35 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
+            className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/35 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
           >
             {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
             <TechEdBoxDecoration variant="wide" accent="cyan" />

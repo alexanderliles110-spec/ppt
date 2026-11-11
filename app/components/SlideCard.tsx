@@ -192,11 +192,11 @@ export default function SlideCard({
       animate="center"
       exit="exit"
       style={{ transformStyle: "preserve-3d" }}
-      className="w-full max-w-[96vw] 2xl:max-w-[1520px] mx-auto px-1 sm:px-3 relative z-10 my-auto"
+      className="w-full max-w-[94vw] sm:max-w-4xl lg:max-w-5xl xl:max-w-[1060px] mx-auto px-1 sm:px-3 relative z-10 my-auto"
     >
-      {/* Expansive Presentation Slide Canvas (Translucent Glassmorphism with visible background effects) */}
+      {/* Presentation Slide Canvas (Translucent Glassmorphism with visible background effects) */}
       <div
-        className={`relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/94 backdrop-blur-2xl border ${themeStyles.border} ${themeStyles.glow} p-4 sm:p-8 md:p-11 lg:p-14 min-h-[72vh] sm:min-h-[80vh] lg:min-h-[82vh] flex flex-col justify-between transition-all duration-300 shadow-2xl`}
+        className={`relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/94 backdrop-blur-2xl border ${themeStyles.border} ${themeStyles.glow} p-3.5 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 shadow-2xl`}
       >
         {/* Animated Tech Accent Line Across Top Edge */}
         <div
@@ -223,32 +223,32 @@ export default function SlideCard({
         />
 
         {/* Slide Top Banner */}
-        <div className="relative z-10 flex items-center justify-between border-b border-slate-100 pb-2.5 mb-2.5 sm:pb-3 sm:mb-3">
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className={`p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border ${themeStyles.iconBg}`}>
-              <SlideIcon name={slide.icon} className="w-4 h-4 sm:w-6 sm:h-6" />
+        <div className="relative z-10 flex items-center justify-between border-b border-slate-100 pb-2 mb-2 sm:pb-2.5 sm:mb-2.5">
+          <div className="flex items-center space-x-2 sm:space-x-2.5">
+            <div className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl border ${themeStyles.iconBg}`}>
+              <SlideIcon name={slide.icon} className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <span className="font-mono text-[10px] sm:text-sm text-slate-500 tracking-wider uppercase font-semibold">
+              <span className="font-mono text-[10px] sm:text-xs text-slate-500 tracking-wider uppercase font-semibold">
                 {slide.category}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center space-x-2 font-mono text-xs sm:text-sm text-slate-400">
+          <div className="flex items-center space-x-2 font-mono text-[10px] sm:text-xs text-slate-400">
             <span>SLIDE {String(slide.id).padStart(2, "0")}</span>
           </div>
         </div>
 
         {/* Main Presentation Body */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center space-y-3.5 sm:space-y-6 md:space-y-7 py-1">
+        <div className="relative z-10 flex-1 flex flex-col justify-center space-y-2.5 sm:space-y-3.5 md:space-y-4 py-0.5">
           {/* Slide Heading & Subtitle with Staggered Entrance */}
-          <div className="space-y-1 sm:space-y-2">
+          <div className="space-y-0.5 sm:space-y-1">
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.35, type: "spring", stiffness: 220 }}
-              className="font-mono text-xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight"
+              className="font-mono text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight"
             >
               {slide.title}
             </motion.h1>
@@ -257,7 +257,7 @@ export default function SlideCard({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.22, duration: 0.35 }}
-              className={`font-mono text-xs sm:text-base md:text-xl font-bold tracking-wide ${themeStyles.textAccent}`}
+              className={`font-mono text-[11px] sm:text-sm md:text-base font-bold tracking-wide ${themeStyles.textAccent}`}
             >
               {`// ${slide.subtitle}`}
             </motion.p>
@@ -268,31 +268,31 @@ export default function SlideCard({
             initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 0.28, duration: 0.35, type: "spring", stiffness: 200 }}
-            className={`relative p-4 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-sky-50/60 via-white to-indigo-50/45 border ${themeStyles.border} shadow-sm overflow-hidden group`}
+            className={`relative p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-sky-50/60 via-white to-indigo-50/45 border ${themeStyles.border} shadow-sm overflow-hidden group`}
           >
             {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
             <TechEdBoxDecoration variant="wide" accent="cyan" />
 
             {/* Tech Terminal Header */}
-            <div className="relative z-10 flex items-center justify-between border-b border-slate-200/70 pb-2 mb-3 font-mono text-[10px] sm:text-xs text-slate-400">
+            <div className="relative z-10 flex items-center justify-between border-b border-slate-200/70 pb-1.5 mb-2 font-mono text-[9px] sm:text-[11px] text-slate-400">
               <div className="flex items-center space-x-2">
                 <span className="flex space-x-1">
-                  <span className="w-2 h-2 rounded-full bg-blue-500/70" />
-                  <span className="w-2 h-2 rounded-full bg-cyan-500/70" />
-                  <span className="w-2 h-2 rounded-full bg-amber-500/70" />
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-blue-500/70" />
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-500/70" />
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500/70" />
                 </span>
                 <span className="font-bold tracking-wider text-slate-500 uppercase">{"// CORE_DEFINITION_SPECIFICATION"}</span>
               </div>
               <div className="flex items-center space-x-1.5 text-slate-400 font-bold">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] tracking-wider">SYS.VERIFIED</span>
+                <span className="text-[9px] sm:text-[10px] tracking-wider">SYS.VERIFIED</span>
               </div>
             </div>
 
             {/* Left Neon Accent Notch */}
             <div className={`absolute top-0 bottom-0 left-0 w-1.5 z-10 ${themeStyles.accentBar}`} />
 
-            <p className="relative z-10 text-xs sm:text-lg md:text-2xl text-slate-800 font-sans leading-relaxed font-normal pl-2 sm:pl-3">
+            <p className="relative z-10 text-xs sm:text-sm md:text-base text-slate-800 font-sans leading-relaxed font-normal pl-2 sm:pl-3">
               &ldquo;{slide.content}&rdquo;
             </p>
           </motion.div>
@@ -328,8 +328,8 @@ export default function SlideCard({
             </motion.div>
           ) : (
             /* Standard Slides: 3 Technology Education Key Pillar Cards in Landscape */
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 pt-2">
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 pt-1">
                 {slide.keyPoints.map((point, idx) => {
                   const isSelected = selectedPointIndex === idx;
                   const cardThemes = [
@@ -404,7 +404,7 @@ export default function SlideCard({
                         stiffness: 220
                       }}
                       onClick={() => setSelectedPointIndex(isSelected ? null : idx)}
-                      className={`relative p-4 sm:p-5 rounded-xl sm:rounded-2xl border transition-all duration-300 text-left overflow-hidden group cursor-pointer ${ct.border}`}
+                      className={`relative p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all duration-300 text-left overflow-hidden group cursor-pointer ${ct.border}`}
                     >
                       {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
                       <TechEdBoxDecoration variant="card" accent={ct.accent} />
@@ -419,39 +419,39 @@ export default function SlideCard({
                       <div className={`absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 z-10 ${ct.bracket} transition-colors pointer-events-none`} />
 
                       {/* Top Micro-Header */}
-                      <div className="relative z-10 flex items-center justify-between mb-2.5">
+                      <div className="relative z-10 flex items-center justify-between mb-2">
                         <span className="font-mono text-xs font-black tracking-wider flex items-center space-x-1.5">
-                          <span className={`px-1.5 py-0.5 rounded text-[10px] ${ct.badgeBg}`}>
+                          <span className={`px-1.5 py-0.5 rounded text-[9px] ${ct.badgeBg}`}>
                             0{idx + 1}
                           </span>
-                          <span className="text-[10px] text-slate-400 uppercase tracking-widest">{ct.subTag}</span>
+                          <span className="text-[9px] text-slate-400 uppercase tracking-widest">{ct.subTag}</span>
                         </span>
 
-                        <span className={`flex items-center space-x-1 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded ${ct.statusBg}`}>
+                        <span className={`flex items-center space-x-1 text-[8px] font-mono font-bold px-1.5 py-0.5 rounded ${ct.statusBg}`}>
                           <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${ct.statusDot}`} />
                           <span>{ct.statusLabel}</span>
                         </span>
                       </div>
 
                       {/* Pillar Title with EdTech Icon */}
-                      <div className="relative z-10 flex items-center space-x-2.5 mb-2">
-                        <div className={`w-8 h-8 rounded-lg text-white flex items-center justify-center shrink-0 shadow-sm ${ct.iconBg}`}>
-                          <CardIcon className="w-4 h-4" />
+                      <div className="relative z-10 flex items-center space-x-2 mb-1.5">
+                        <div className={`w-7 h-7 rounded-lg text-white flex items-center justify-center shrink-0 shadow-sm ${ct.iconBg}`}>
+                          <CardIcon className="w-3.5 h-3.5" />
                         </div>
-                        <h4 className={`font-mono text-xs sm:text-base font-bold text-slate-900 transition-colors ${ct.titleHover}`}>
+                        <h4 className={`font-mono text-xs sm:text-sm font-bold text-slate-900 transition-colors ${ct.titleHover}`}>
                           {point.label}
                         </h4>
                       </div>
 
                       {/* Description */}
-                      <p className="relative z-10 text-[11px] sm:text-xs md:text-sm text-slate-600 leading-relaxed font-sans mb-3">
+                      <p className="relative z-10 text-[11px] sm:text-xs text-slate-600 leading-relaxed font-sans mb-2.5">
                         {point.desc}
                       </p>
 
                       {/* Bottom Circuit Trace Bar */}
-                      <div className="relative z-10 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                      <div className="relative z-10 pt-1.5 border-t border-slate-200/60 flex items-center justify-between text-[9px] font-mono text-slate-400">
                         <span className={`tracking-widest font-semibold ${ct.footerText}`}>{ct.footerCode}</span>
-                        <span className={`text-[9px] uppercase font-bold text-slate-400 transition-colors ${ct.titleHover}`}>
+                        <span className={`text-[8px] uppercase font-bold text-slate-400 transition-colors ${ct.titleHover}`}>
                           {isSelected ? "FOCUSED" : "TAP TO FOCUS"}
                         </span>
                       </div>
@@ -466,11 +466,11 @@ export default function SlideCard({
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.55, duration: 0.35 }}
-                  className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-4 pt-2 sm:pt-3"
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-4 pt-1.5 sm:pt-2"
                 >
                   <button
                     onClick={onRestart}
-                    className="flex items-center justify-center space-x-2 px-4 py-2.5 sm:px-5 sm:py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-mono text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 transition active:scale-95 cursor-pointer"
+                    className="flex items-center justify-center space-x-2 px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-mono text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 transition active:scale-95 cursor-pointer"
                   >
                     <RotateCcw className="w-4 h-4" />
                     <span>Restart Presentation</span>
@@ -478,7 +478,7 @@ export default function SlideCard({
 
                   <button
                     onClick={onExit}
-                    className="flex items-center justify-center space-x-2 px-4 py-2.5 sm:px-5 sm:py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono text-xs sm:text-sm font-bold shadow-md transition active:scale-95 cursor-pointer"
+                    className="flex items-center justify-center space-x-2 px-4 py-2 sm:px-5 sm:py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono text-xs sm:text-sm font-bold shadow-md transition active:scale-95 cursor-pointer"
                   >
                     <LogOut className="w-4 h-4" />
                     <span>Exit Deck</span>
@@ -490,7 +490,7 @@ export default function SlideCard({
         </div>
 
         {/* Slide Footer */}
-        <div className="relative z-10 flex items-center justify-between border-t border-slate-100 pt-3 mt-4 text-xs font-mono text-slate-400">
+        <div className="relative z-10 flex items-center justify-between border-t border-slate-100 pt-2.5 mt-3 text-[11px] font-mono text-slate-400">
           <div className="flex items-center space-x-2">
             <span className={`w-2.5 h-2.5 rounded-full ${themeStyles.accentBar}`} />
             <span className="tracking-wider uppercase text-slate-500 font-medium">
