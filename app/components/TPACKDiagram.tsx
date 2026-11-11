@@ -175,151 +175,159 @@ export default function TPACKDiagram() {
 
   return (
     <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-6 py-1 sm:py-2">
-      {/* Venn Diagram Visual Canvas (Rock-solid SVG layout, mobile responsive) */}
-      <div className="relative w-full max-w-[260px] sm:max-w-[340px] lg:max-w-[400px] aspect-square flex items-center justify-center shrink-0 mx-auto">
+      {/* Venn Diagram Visual Canvas (Landscape Oval SVG layout, mobile responsive) */}
+      <div className="relative w-full max-w-[340px] sm:max-w-[440px] lg:max-w-[480px] aspect-[3/2] flex items-center justify-center shrink-0 mx-auto">
         <svg
-          viewBox="0 0 500 500"
+          viewBox="0 0 600 400"
           className="w-full h-full overflow-visible drop-shadow-sm select-none"
         >
-          {/* Outer Dashed Contexts Ring */}
-          <circle
-            cx="250"
-            cy="250"
-            r="235"
+          {/* Outer Dashed Landscape Contexts Oval */}
+          <ellipse
+            cx="300"
+            cy="200"
+            rx="282"
+            ry="185"
             fill="none"
-            stroke="#94a3b8"
+            stroke="#818cf8"
             strokeWidth="2.5"
-            strokeDasharray="10 8"
-            className="opacity-50"
+            strokeDasharray="12 8"
+            className="opacity-65"
           />
           <text
-            x="250"
-            y="470"
+            x="300"
+            y="372"
             textAnchor="middle"
             className="font-mono text-xs fill-slate-500 font-bold tracking-widest uppercase"
           >
             Contexts
           </text>
 
-          {/* TK Circle (Top, Pink) */}
+          {/* TK Landscape Circle (Top, Pink) */}
           <g className="cursor-pointer" onClick={() => setActiveKey("TK")}>
-            <circle
-              cx="250"
-              cy="180"
-              r={activeKey === "TK" ? 118 : 115}
+            <ellipse
+              cx="300"
+              cy="142"
+              rx={activeKey === "TK" ? 142 : 138}
+              ry={activeKey === "TK" ? 95 : 92}
               fill={activeKey === "TK" ? tpackWorlds.TK.theme.activeFill : tpackWorlds.TK.theme.fillColor}
               stroke={tpackWorlds.TK.theme.stroke}
               strokeWidth={activeKey === "TK" ? 4 : 2}
               className="transition-all duration-300"
             />
-            <text x="250" y="135" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+            <text x="300" y="98" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
               Technological
             </text>
-            <text x="250" y="152" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+            <text x="300" y="115" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
               Knowledge (TK)
             </text>
           </g>
 
-          {/* PK Circle (Bottom Left, Yellow) */}
+          {/* PK Landscape Circle (Bottom Left, Yellow) */}
           <g className="cursor-pointer" onClick={() => setActiveKey("PK")}>
-            <circle
-              cx="175"
-              cy="290"
-              r={activeKey === "PK" ? 118 : 115}
+            <ellipse
+              cx="210"
+              cy="238"
+              rx={activeKey === "PK" ? 142 : 138}
+              ry={activeKey === "PK" ? 95 : 92}
               fill={activeKey === "PK" ? tpackWorlds.PK.theme.activeFill : tpackWorlds.PK.theme.fillColor}
               stroke={tpackWorlds.PK.theme.stroke}
               strokeWidth={activeKey === "PK" ? 4 : 2}
               className="transition-all duration-300"
             />
-            <text x="140" y="320" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+            <text x="155" y="262" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
               Pedagogical
             </text>
-            <text x="140" y="337" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+            <text x="155" y="279" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
               Knowledge (PK)
             </text>
           </g>
 
-          {/* CK Circle (Bottom Right, Cyan) */}
+          {/* CK Landscape Circle (Bottom Right, Cyan) */}
           <g className="cursor-pointer" onClick={() => setActiveKey("CK")}>
-            <circle
-              cx="325"
-              cy="290"
-              r={activeKey === "CK" ? 118 : 115}
+            <ellipse
+              cx="390"
+              cy="238"
+              rx={activeKey === "CK" ? 142 : 138}
+              ry={activeKey === "CK" ? 95 : 92}
               fill={activeKey === "CK" ? tpackWorlds.CK.theme.activeFill : tpackWorlds.CK.theme.fillColor}
               stroke={tpackWorlds.CK.theme.stroke}
               strokeWidth={activeKey === "CK" ? 4 : 2}
               className="transition-all duration-300"
             />
-            <text x="360" y="320" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+            <text x="445" y="262" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
               Content
             </text>
-            <text x="360" y="337" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
+            <text x="445" y="279" textAnchor="middle" className="font-mono text-xs sm:text-sm font-bold fill-slate-900 pointer-events-none">
               Knowledge (CK)
             </text>
           </g>
 
-          {/* Fixed Intersections (Guaranteed Position Stability on all devices) */}
+          {/* Fixed Intersections (Landscape Oval Badges) */}
 
           {/* TPK */}
           <g className="cursor-pointer" onClick={() => setActiveKey("TPK")}>
-            <circle
-              cx="195"
-              cy="225"
-              r={activeKey === "TPK" ? 33 : 27}
+            <ellipse
+              cx="232"
+              cy="182"
+              rx={activeKey === "TPK" ? 36 : 30}
+              ry={activeKey === "TPK" ? 26 : 22}
               fill={activeKey === "TPK" ? "#f43f5e" : "#fb7185"}
               stroke="#ffffff"
               strokeWidth={activeKey === "TPK" ? 3.5 : 2}
               className="transition-all duration-200"
             />
-            <text x="195" y="230" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
+            <text x="232" y="186" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
               TPK
             </text>
           </g>
 
           {/* TCK */}
           <g className="cursor-pointer" onClick={() => setActiveKey("TCK")}>
-            <circle
-              cx="305"
-              cy="225"
-              r={activeKey === "TCK" ? 33 : 27}
+            <ellipse
+              cx="368"
+              cy="182"
+              rx={activeKey === "TCK" ? 36 : 30}
+              ry={activeKey === "TCK" ? 26 : 22}
               fill={activeKey === "TCK" ? "#4f46e5" : "#6366f1"}
               stroke="#ffffff"
               strokeWidth={activeKey === "TCK" ? 3.5 : 2}
               className="transition-all duration-200"
             />
-            <text x="305" y="230" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
+            <text x="368" y="186" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
               TCK
             </text>
           </g>
 
           {/* PCK */}
           <g className="cursor-pointer" onClick={() => setActiveKey("PCK")}>
-            <circle
-              cx="250"
-              cy="330"
-              r={activeKey === "PCK" ? 33 : 27}
+            <ellipse
+              cx="300"
+              cy="268"
+              rx={activeKey === "PCK" ? 36 : 30}
+              ry={activeKey === "PCK" ? 26 : 22}
               fill={activeKey === "PCK" ? "#16a34a" : "#22c55e"}
               stroke="#ffffff"
               strokeWidth={activeKey === "PCK" ? 3.5 : 2}
               className="transition-all duration-200"
             />
-            <text x="250" y="335" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
+            <text x="300" y="272" textAnchor="middle" className="font-mono text-xs font-black fill-white pointer-events-none">
               PCK
             </text>
           </g>
 
           {/* TPACK Center Core */}
           <g className="cursor-pointer" onClick={() => setActiveKey("TPACK")}>
-            <circle
-              cx="250"
-              cy="255"
-              r={activeKey === "TPACK" ? 36 : 30}
+            <ellipse
+              cx="300"
+              cy="208"
+              rx={activeKey === "TPACK" ? 40 : 34}
+              ry={activeKey === "TPACK" ? 28 : 24}
               fill={activeKey === "TPACK" ? "#9333ea" : "#a855f7"}
               stroke="#ffffff"
               strokeWidth={activeKey === "TPACK" ? 4 : 2.5}
               className="transition-all duration-200"
             />
-            <text x="250" y="259" textAnchor="middle" className="font-mono text-[11px] font-black fill-white pointer-events-none tracking-tight">
+            <text x="300" y="212" textAnchor="middle" className="font-mono text-[11px] font-black fill-white pointer-events-none tracking-tight">
               TPACK
             </text>
           </g>

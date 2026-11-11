@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, GraduationCap, BookOpen, Layers, Atom, Network, Globe2, Sparkles, Image as ImageIcon } from "lucide-react";
-import Image from "next/image";
+import { Cpu, GraduationCap, BookOpen, Layers, Atom, Network, Globe2 } from "lucide-react";
 
 interface DomainInfo {
   key: string;
@@ -19,7 +18,7 @@ const domains: Record<string, DomainInfo> = {
     key: "TK",
     name: "Technological Knowledge",
     code: "TK",
-    desc: "Understanding digital tools, software architectures, device hardware, and educational interfaces.",
+    desc: "Understanding digital tools, hardware, operating systems, and educational software.",
     color: "#ec4899",
     icon: Cpu
   },
@@ -27,7 +26,7 @@ const domains: Record<string, DomainInfo> = {
     key: "PK",
     name: "Pedagogical Knowledge",
     code: "PK",
-    desc: "Practices and methods of teaching, instructional design, classroom management, and assessment.",
+    desc: "Methods and practices of teaching, lesson planning, instructional strategies, and student evaluation.",
     color: "#eab308",
     icon: GraduationCap
   },
@@ -35,7 +34,7 @@ const domains: Record<string, DomainInfo> = {
     key: "CK",
     name: "Content Knowledge",
     code: "CK",
-    desc: "Core subject matter: scientific theories, mathematical logic, history, and disciplinary concepts.",
+    desc: "The core subject matter, theories, concepts, and disciplinary knowledge to be learned.",
     color: "#06b6d4",
     icon: BookOpen
   },
@@ -43,7 +42,7 @@ const domains: Record<string, DomainInfo> = {
     key: "TPK",
     name: "Technological Pedagogical Knowledge",
     code: "TPK",
-    desc: "How digital platforms and classroom tech reshape teaching strategies, collaboration, and student engagement.",
+    desc: "How digital tools and classroom technology transform teaching strategies and student engagement.",
     color: "#f43f5e",
     icon: Network
   },
@@ -51,7 +50,7 @@ const domains: Record<string, DomainInfo> = {
     key: "TCK",
     name: "Technological Content Knowledge",
     code: "TCK",
-    desc: "How technology illuminates and visualizes complex content (e.g. 3D simulations, interactive models).",
+    desc: "Using technology to represent, simulate, and visualize specific subject matter concepts.",
     color: "#6366f1",
     icon: Atom
   },
@@ -59,7 +58,7 @@ const domains: Record<string, DomainInfo> = {
     key: "PCK",
     name: "Pedagogical Content Knowledge",
     code: "PCK",
-    desc: "Transforming subject matter into accessible student understanding using targeted pedagogical analogies.",
+    desc: "Blending subject knowledge with effective teaching strategies to make content accessible.",
     color: "#10b981",
     icon: Layers
   },
@@ -67,472 +66,378 @@ const domains: Record<string, DomainInfo> = {
     key: "TPACK",
     name: "Technological Pedagogical Content Knowledge",
     code: "TPACK",
-    desc: "The true synthesis: deep integration of technology, pedagogy, and curriculum for 21st-century education.",
-    color: "#9333ea",
+    desc: "The core intersection: seamlessly integrating technology, pedagogy, and content for 21st-century learning.",
+    color: "#7c3aed",
     icon: Globe2
   }
 };
 
 export default function LandscapeTPACKDiagram() {
   const [selectedKey, setSelectedKey] = useState<string>("TPACK");
-  const [showOriginalImage, setShowOriginalImage] = useState<boolean>(false);
 
   const activeDomain = domains[selectedKey] || domains.TPACK;
   const ActiveIcon = activeDomain.icon;
 
+  // Landscape ellipse geometry (true horizontal oval shape)
+  const tk = { cx: 430, cy: 132, rx: 142, ry: 74 };
+  const pk = { cx: 345, cy: 205, rx: 142, ry: 74 };
+  const ck = { cx: 515, cy: 205, rx: 142, ry: 74 };
+
   return (
-    <div className="w-full bg-white/95 rounded-2xl border border-slate-200/90 shadow-md p-3 sm:p-5 relative overflow-hidden group">
+    <div className="w-full bg-white/95 rounded-2xl border border-slate-200/90 shadow-md p-3 sm:p-4 relative overflow-hidden group">
       {/* High-Tech HUD Corner Brackets */}
       <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-blue-500 pointer-events-none" />
       <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-blue-500 pointer-events-none" />
       <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-blue-500 pointer-events-none" />
       <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-blue-500 pointer-events-none" />
 
-      {/* Top Header Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-2.5 mb-3 font-mono text-[10px] sm:text-xs">
+      {/* Top Tech Header Bar */}
+      <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2 mb-2 font-mono text-[10px] sm:text-xs">
         <div className="flex items-center space-x-2">
           <span className="flex space-x-1">
-            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            <span className="w-2 h-2 rounded-full bg-cyan-400" />
+            <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
             <span className="w-2 h-2 rounded-full bg-amber-400" />
+            <span className="w-2 h-2 rounded-full bg-cyan-400" />
           </span>
           <span className="font-bold tracking-wider text-slate-700 uppercase">
-            {"// TPACK.LANDSCAPE_CONVERGENCE_MODEL"}
-          </span>
-          <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 font-bold text-[9px] uppercase tracking-wider hidden sm:inline-block">
-            Mishra &amp; Koehler
+            {"// TPACK.LANDSCAPE_FRAMEWORK_MODEL"}
           </span>
         </div>
-
-        {/* Toggle Mode: Interactive Landscape Vector vs Original Reference Graphic */}
-        <div className="flex items-center space-x-1.5">
-          <button
-            onClick={() => setShowOriginalImage(false)}
-            className={`px-2.5 py-1 rounded text-[10px] font-bold transition-all flex items-center space-x-1 ${
-              !showOriginalImage
-                ? "bg-slate-900 text-white shadow-sm"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
-          >
-            <Sparkles className="w-3 h-3" />
-            <span>Interactive Landscape</span>
-          </button>
-          <button
-            onClick={() => setShowOriginalImage(true)}
-            className={`px-2.5 py-1 rounded text-[10px] font-bold transition-all flex items-center space-x-1 ${
-              showOriginalImage
-                ? "bg-slate-900 text-white shadow-sm"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
-          >
-            <ImageIcon className="w-3 h-3" />
-            <span>Reference Diagram</span>
-          </button>
-        </div>
+        <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-600 font-mono font-bold text-[9px] uppercase tracking-wider">
+          FIG 1.0 • INTERACTIVE VENN
+        </span>
       </div>
 
-      {/* Main Diagram Area */}
-      {showOriginalImage ? (
-        /* Reference Graphic Mode (User's Exact Uploaded Diagram in Landscape Frame) */
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="w-full flex flex-col items-center justify-center py-2"
+      {/* Landscape TPACK Venn Diagram SVG */}
+      <div className="relative w-full flex flex-col items-center">
+        <svg
+          viewBox="0 0 860 350"
+          className="w-full h-auto max-h-[290px] sm:max-h-[320px] select-none overflow-visible"
         >
-          <div className="relative w-full max-w-lg aspect-[4/3] sm:aspect-[16/10] bg-white rounded-xl overflow-hidden border border-slate-100 p-2 shadow-inner flex items-center justify-center">
-            <Image
-              src="/images/tpack-diagram.jpg"
-              alt="Technological Pedagogical Content Knowledge (TPACK) Framework Diagram"
-              width={540}
-              height={440}
-              priority
-              className="w-full h-full object-contain select-none"
-            />
-          </div>
-          <p className="mt-2 text-center font-mono text-[10px] text-slate-400">
-            {"// FIG 1.0: MISHRA & KOEHLER TPACK TRIADIC KNOWLEDGE MODEL"}
-          </p>
-        </motion.div>
-      ) : (
-        /* Interactive Landscape Vector Mode (True Landscape Ellipse & Widescreen Callouts) */
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="relative w-full flex flex-col items-center"
-        >
-          <svg
-            viewBox="0 0 860 380"
-            className="w-full h-auto max-h-[340px] drop-shadow-sm select-none"
-          >
-            {/* Outer Landscape "Contexts" Ellipse */}
+          <defs>
+            <clipPath id="landscape-clip-tk">
+              <ellipse cx={tk.cx} cy={tk.cy} rx={tk.rx} ry={tk.ry} />
+            </clipPath>
+            <clipPath id="landscape-clip-pk">
+              <ellipse cx={pk.cx} cy={pk.cy} rx={pk.rx} ry={pk.ry} />
+            </clipPath>
+            <clipPath id="landscape-clip-ck">
+              <ellipse cx={ck.cx} cy={ck.cy} rx={ck.rx} ry={ck.ry} />
+            </clipPath>
+            {/* Intersection of TK and PK for 3-way clip */}
+            <clipPath id="landscape-clip-tk-pk" clipPathUnits="userSpaceOnUse">
+              <ellipse cx={pk.cx} cy={pk.cy} rx={pk.rx} ry={pk.ry} clipPath="url(#landscape-clip-tk)" />
+            </clipPath>
+
+            <marker
+              id="arrow-dot"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e293b" />
+            </marker>
+          </defs>
+
+          {/* Outer Landscape Dashed "Contexts" Oval */}
+          <ellipse
+            cx="430"
+            cy="175"
+            rx="405"
+            ry="162"
+            fill="#ffffff"
+            stroke="#818cf8"
+            strokeWidth="3.5"
+            strokeDasharray="16 10"
+          />
+
+          {/* Base Circle 1: TK (Top, Pink/Lavender) */}
+          <ellipse
+            cx={tk.cx}
+            cy={tk.cy}
+            rx={tk.rx}
+            ry={tk.ry}
+            fill={selectedKey === "TK" ? "#f472b6" : "#f5d0fe"}
+            className="cursor-pointer transition-colors duration-200 hover:opacity-90"
+            onClick={() => setSelectedKey("TK")}
+          />
+
+          {/* Base Circle 2: PK (Bottom Left, Soft Yellow) */}
+          <ellipse
+            cx={pk.cx}
+            cy={pk.cy}
+            rx={pk.rx}
+            ry={pk.ry}
+            fill={selectedKey === "PK" ? "#facc15" : "#fef08a"}
+            className="cursor-pointer transition-colors duration-200 hover:opacity-90"
+            onClick={() => setSelectedKey("PK")}
+          />
+
+          {/* Base Circle 3: CK (Bottom Right, Soft Cyan) */}
+          <ellipse
+            cx={ck.cx}
+            cy={ck.cy}
+            rx={ck.rx}
+            ry={ck.ry}
+            fill={selectedKey === "CK" ? "#22d3ee" : "#99f6e4"}
+            className="cursor-pointer transition-colors duration-200 hover:opacity-90"
+            onClick={() => setSelectedKey("CK")}
+          />
+
+          {/* Overlap 1: TPK (TK ∩ PK - Coral Red/Pink) */}
+          <g clipPath="url(#landscape-clip-tk)">
             <ellipse
-              cx="430"
-              cy="190"
-              rx="410"
-              ry="175"
-              fill="#f8fafc"
-              stroke="#818cf8"
-              strokeWidth="2.5"
-              strokeDasharray="8 6"
-              className="opacity-70 transition-all duration-300"
+              cx={pk.cx}
+              cy={pk.cy}
+              rx={pk.rx}
+              ry={pk.ry}
+              fill={selectedKey === "TPK" ? "#f43f5e" : "#fb7185"}
+              className="cursor-pointer transition-colors duration-200"
+              onClick={() => setSelectedKey("TPK")}
             />
-            {/* Contexts Label */}
-            <text
-              x="430"
-              y="355"
-              textAnchor="middle"
-              className="font-mono text-xs fill-indigo-600 font-bold tracking-widest uppercase"
-            >
-              Contexts (21st-Century Learning Environment)
+          </g>
+
+          {/* Overlap 2: TCK (TK ∩ CK - Periwinkle Blue/Indigo) */}
+          <g clipPath="url(#landscape-clip-tk)">
+            <ellipse
+              cx={ck.cx}
+              cy={ck.cy}
+              rx={ck.rx}
+              ry={ck.ry}
+              fill={selectedKey === "TCK" ? "#4f46e5" : "#818cf8"}
+              className="cursor-pointer transition-colors duration-200"
+              onClick={() => setSelectedKey("TCK")}
+            />
+          </g>
+
+          {/* Overlap 3: PCK (PK ∩ CK - Sage Green) */}
+          <g clipPath="url(#landscape-clip-pk)">
+            <ellipse
+              cx={ck.cx}
+              cy={ck.cy}
+              rx={ck.rx}
+              ry={ck.ry}
+              fill={selectedKey === "PCK" ? "#10b981" : "#86efac"}
+              className="cursor-pointer transition-colors duration-200"
+              onClick={() => setSelectedKey("PCK")}
+            />
+          </g>
+
+          {/* Center Overlap 4: TPACK (TK ∩ PK ∩ CK - Dark Olive / Rich Core) */}
+          <g clipPath="url(#landscape-clip-tk)">
+            <g clipPath="url(#landscape-clip-pk)">
+              <ellipse
+                cx={ck.cx}
+                cy={ck.cy}
+                rx={ck.rx}
+                ry={ck.ry}
+                fill={selectedKey === "TPACK" ? "#6d28d9" : "#655a30"}
+                className="cursor-pointer transition-colors duration-200"
+                onClick={() => setSelectedKey("TPACK")}
+              />
+            </g>
+          </g>
+
+          {/* Crisp Black/Slate Outlines for the 3 Landscape Ellipses */}
+          <ellipse
+            cx={tk.cx}
+            cy={tk.cy}
+            rx={tk.rx}
+            ry={tk.ry}
+            fill="none"
+            stroke="#1e293b"
+            strokeWidth="2"
+            className="pointer-events-none"
+          />
+          <ellipse
+            cx={pk.cx}
+            cy={pk.cy}
+            rx={pk.rx}
+            ry={pk.ry}
+            fill="none"
+            stroke="#1e293b"
+            strokeWidth="2"
+            className="pointer-events-none"
+          />
+          <ellipse
+            cx={ck.cx}
+            cy={ck.cy}
+            rx={ck.rx}
+            ry={ck.ry}
+            fill="none"
+            stroke="#1e293b"
+            strokeWidth="2"
+            className="pointer-events-none"
+          />
+
+          {/* PRIMARY LABELS INSIDE THE 3 LANDSCAPE CIRCLES */}
+          {/* TK Label */}
+          <g className="cursor-pointer" onClick={() => setSelectedKey("TK")}>
+            <text x="430" y="92" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Technological
             </text>
+            <text x="430" y="108" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Knowledge
+            </text>
+            <text x="430" y="124" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              (TK)
+            </text>
+          </g>
 
-            {/* CALLOUT LINES AND LABELS (LANDSCAPE HORIZONTAL SPREAD) */}
+          {/* PK Label */}
+          <g className="cursor-pointer" onClick={() => setSelectedKey("PK")}>
+            <text x="275" y="205" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Pedagogical
+            </text>
+            <text x="275" y="221" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Knowledge
+            </text>
+            <text x="275" y="237" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              (PK)
+            </text>
+          </g>
 
-            {/* Top TPACK Callout */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TPACK")}>
-              <path
-                d="M 430 190 L 430 85 L 530 45"
-                stroke="#9333ea"
-                strokeWidth="2"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <circle cx="430" cy="190" r="4.5" fill="#9333ea" />
-              <circle cx="530" cy="45" r="3.5" fill="#9333ea" />
-              <rect
-                x="535"
-                y="26"
-                width="240"
-                height="32"
-                rx="6"
-                fill={selectedKey === "TPACK" ? "#9333ea" : "#f3e8ff"}
-                stroke="#c084fc"
-                strokeWidth="1.5"
-              />
-              <text
-                x="545"
-                y="41"
-                className={`font-mono text-[10px] font-bold ${
-                  selectedKey === "TPACK" ? "fill-white" : "fill-purple-900"
-                }`}
+          {/* CK Label */}
+          <g className="cursor-pointer" onClick={() => setSelectedKey("CK")}>
+            <text x="585" y="205" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Content
+            </text>
+            <text x="585" y="221" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Knowledge
+            </text>
+            <text x="585" y="237" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              (CK)
+            </text>
+          </g>
+
+          {/* POINTER ARROWS & INTERSECTION LABELS (MATCHING CLASSIC DIAGRAM IN LANDSCAPE) */}
+
+          {/* 1. Top TPACK Label & Bent Pointer Line to Center */}
+          <g className="cursor-pointer" onClick={() => setSelectedKey("TPACK")}>
+            <text x="430" y="24" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Technological Pedagogical Content
+            </text>
+            <text x="430" y="40" textAnchor="middle" className="font-sans text-[13px] font-bold fill-slate-900">
+              Knowledge (TPACK)
+            </text>
+            <circle cx="515" cy="36" r="3" fill="#1e293b" />
+            <polyline
+              points="515,36 555,82 435,172"
+              fill="none"
+              stroke="#1e293b"
+              strokeWidth="1.6"
+              markerEnd="url(#arrow-dot)"
+            />
+          </g>
+
+          {/* 2. Left TPK Label & Pointer Line */}
+          <g className="cursor-pointer" onClick={() => setSelectedKey("TPK")}>
+            <text x="145" y="102" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
+              Technological
+            </text>
+            <text x="145" y="118" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
+              Pedagogical
+            </text>
+            <text x="145" y="134" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
+              Knowledge (TPK)
+            </text>
+            <circle cx="215" cy="128" r="3" fill="#1e293b" />
+            <line
+              x1="215"
+              y1="128"
+              x2="352"
+              y2="156"
+              stroke="#1e293b"
+              strokeWidth="1.6"
+              markerEnd="url(#arrow-dot)"
+            />
+          </g>
+
+          {/* 3. Right TCK Label & Pointer Line */}
+          <g className="cursor-pointer" onClick={() => setSelectedKey("TCK")}>
+            <text x="715" y="102" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
+              Technological
+            </text>
+            <text x="715" y="118" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
+              Content
+            </text>
+            <text x="715" y="134" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
+              Knowledge (TCK)
+            </text>
+            <circle cx="645" cy="128" r="3" fill="#1e293b" />
+            <line
+              x1="645"
+              y1="128"
+              x2="508"
+              y2="156"
+              stroke="#1e293b"
+              strokeWidth="1.6"
+              markerEnd="url(#arrow-dot)"
+            />
+          </g>
+
+          {/* 4. Bottom PCK Label & Pointer Line */}
+          <g className="cursor-pointer" onClick={() => setSelectedKey("PCK")}>
+            <circle cx="430" cy="272" r="3" fill="#1e293b" />
+            <line
+              x1="430"
+              y1="272"
+              x2="430"
+              y2="225"
+              stroke="#1e293b"
+              strokeWidth="1.6"
+              markerEnd="url(#arrow-dot)"
+            />
+            <text x="430" y="290" textAnchor="middle" className="font-sans text-[13px] font-semibold fill-slate-800">
+              Pedagogical Content Knowledge (PCK)
+            </text>
+          </g>
+
+          {/* Bottom "Contexts" Label */}
+          <text
+            x="430"
+            y="324"
+            textAnchor="middle"
+            className="font-sans text-[16px] font-semibold fill-slate-800 tracking-wide"
+          >
+            Contexts
+          </text>
+        </svg>
+
+        {/* Compact Interactive Domain Bar */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedKey}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            className="mt-1 w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-between gap-3 text-left"
+          >
+            <div className="flex items-center space-x-2.5">
+              <div
+                className="w-6 h-6 rounded-lg flex items-center justify-center text-white shrink-0 shadow-sm"
+                style={{ backgroundColor: activeDomain.color }}
               >
-                Technological Pedagogical Content
-              </text>
-              <text
-                x="545"
-                y="52"
-                className={`font-mono text-[9px] font-bold ${
-                  selectedKey === "TPACK" ? "fill-purple-200" : "fill-purple-700"
-                }`}
-              >
-                Knowledge (TPACK)
-              </text>
-            </g>
-
-            {/* Left TPK Callout */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TPK")}>
-              <path
-                d="M 385 175 L 300 155 L 180 155"
-                stroke="#f43f5e"
-                strokeWidth="2"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <circle cx="385" cy="175" r="4.5" fill="#f43f5e" />
-              <circle cx="180" cy="155" r="3.5" fill="#f43f5e" />
-              <rect
-                x="15"
-                y="135"
-                width="160"
-                height="36"
-                rx="6"
-                fill={selectedKey === "TPK" ? "#f43f5e" : "#ffe4e6"}
-                stroke="#fda4af"
-                strokeWidth="1.5"
-              />
-              <text
-                x="95"
-                y="150"
-                textAnchor="middle"
-                className={`font-mono text-[10px] font-bold ${
-                  selectedKey === "TPK" ? "fill-white" : "fill-rose-900"
-                }`}
-              >
-                Technological Pedagogical
-              </text>
-              <text
-                x="95"
-                y="163"
-                textAnchor="middle"
-                className={`font-mono text-[9px] font-bold ${
-                  selectedKey === "TPK" ? "fill-rose-200" : "fill-rose-700"
-                }`}
-              >
-                Knowledge (TPK)
-              </text>
-            </g>
-
-            {/* Right TCK Callout */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TCK")}>
-              <path
-                d="M 475 175 L 560 155 L 680 155"
-                stroke="#6366f1"
-                strokeWidth="2"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <circle cx="475" cy="175" r="4.5" fill="#6366f1" />
-              <circle cx="680" cy="155" r="3.5" fill="#6366f1" />
-              <rect
-                x="685"
-                y="135"
-                width="160"
-                height="36"
-                rx="6"
-                fill={selectedKey === "TCK" ? "#6366f1" : "#e0e7ff"}
-                stroke="#a5b4fc"
-                strokeWidth="1.5"
-              />
-              <text
-                x="765"
-                y="150"
-                textAnchor="middle"
-                className={`font-mono text-[10px] font-bold ${
-                  selectedKey === "TCK" ? "fill-white" : "fill-indigo-900"
-                }`}
-              >
-                Technological Content
-              </text>
-              <text
-                x="765"
-                y="163"
-                textAnchor="middle"
-                className={`font-mono text-[9px] font-bold ${
-                  selectedKey === "TCK" ? "fill-indigo-200" : "fill-indigo-700"
-                }`}
-              >
-                Knowledge (TCK)
-              </text>
-            </g>
-
-            {/* Bottom PCK Callout */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("PCK")}>
-              <path
-                d="M 430 245 L 430 300"
-                stroke="#10b981"
-                strokeWidth="2"
-                strokeDasharray="3 3"
-                fill="none"
-              />
-              <circle cx="430" cy="245" r="4.5" fill="#10b981" />
-              <circle cx="430" cy="300" r="3.5" fill="#10b981" />
-              <rect
-                x="330"
-                y="298"
-                width="200"
-                height="28"
-                rx="6"
-                fill={selectedKey === "PCK" ? "#10b981" : "#d1fae5"}
-                stroke="#6ee7b7"
-                strokeWidth="1.5"
-              />
-              <text
-                x="430"
-                y="316"
-                textAnchor="middle"
-                className={`font-mono text-[10px] font-bold ${
-                  selectedKey === "PCK" ? "fill-white" : "fill-emerald-900"
-                }`}
-              >
-                Pedagogical Content Knowledge (PCK)
-              </text>
-            </g>
-
-            {/* THREE PRIMARY KNOWLEDGE CIRCLES */}
-
-            {/* TK Circle (Top, Pink) */}
-            <g className="cursor-pointer group/tk" onClick={() => setSelectedKey("TK")}>
-              <circle
-                cx="430"
-                cy="135"
-                r={selectedKey === "TK" ? 95 : 90}
-                fill={selectedKey === "TK" ? "rgba(244, 114, 182, 0.55)" : "rgba(244, 114, 182, 0.35)"}
-                stroke="#ec4899"
-                strokeWidth={selectedKey === "TK" ? 3.5 : 2}
-                className="transition-all duration-300"
-              />
-              <text
-                x="430"
-                y="98"
-                textAnchor="middle"
-                className="font-mono text-xs font-black fill-slate-900 pointer-events-none"
-              >
-                Technological
-              </text>
-              <text
-                x="430"
-                y="114"
-                textAnchor="middle"
-                className="font-mono text-xs font-black fill-pink-900 pointer-events-none"
-              >
-                Knowledge (TK)
-              </text>
-            </g>
-
-            {/* PK Circle (Bottom Left, Yellow) */}
-            <g className="cursor-pointer group/pk" onClick={() => setSelectedKey("PK")}>
-              <circle
-                cx="365"
-                cy="230"
-                r={selectedKey === "PK" ? 95 : 90}
-                fill={selectedKey === "PK" ? "rgba(250, 204, 21, 0.55)" : "rgba(250, 204, 21, 0.35)"}
-                stroke="#eab308"
-                strokeWidth={selectedKey === "PK" ? 3.5 : 2}
-                className="transition-all duration-300"
-              />
-              <text
-                x="330"
-                y="255"
-                textAnchor="middle"
-                className="font-mono text-xs font-black fill-slate-900 pointer-events-none"
-              >
-                Pedagogical
-              </text>
-              <text
-                x="330"
-                y="271"
-                textAnchor="middle"
-                className="font-mono text-xs font-black fill-amber-900 pointer-events-none"
-              >
-                Knowledge (PK)
-              </text>
-            </g>
-
-            {/* CK Circle (Bottom Right, Cyan) */}
-            <g className="cursor-pointer group/ck" onClick={() => setSelectedKey("CK")}>
-              <circle
-                cx="495"
-                cy="230"
-                r={selectedKey === "CK" ? 95 : 90}
-                fill={selectedKey === "CK" ? "rgba(6, 182, 212, 0.55)" : "rgba(6, 182, 212, 0.35)"}
-                stroke="#06b6d4"
-                strokeWidth={selectedKey === "CK" ? 3.5 : 2}
-                className="transition-all duration-300"
-              />
-              <text
-                x="530"
-                y="255"
-                textAnchor="middle"
-                className="font-mono text-xs font-black fill-slate-900 pointer-events-none"
-              >
-                Content
-              </text>
-              <text
-                x="530"
-                y="271"
-                textAnchor="middle"
-                className="font-mono text-xs font-black fill-cyan-900 pointer-events-none"
-              >
-                Knowledge (CK)
-              </text>
-            </g>
-
-            {/* Center Overlap Nodes (Active Focus Nodes) */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TPK")}>
-              <circle
-                cx="385"
-                cy="175"
-                r={selectedKey === "TPK" ? 22 : 18}
-                fill={selectedKey === "TPK" ? "#f43f5e" : "rgba(244, 63, 94, 0.6)"}
-                stroke="#ffffff"
-                strokeWidth="1.5"
-                className="transition-all"
-              />
-              <text x="385" y="179" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white pointer-events-none">
-                TPK
-              </text>
-            </g>
-
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TCK")}>
-              <circle
-                cx="475"
-                cy="175"
-                r={selectedKey === "TCK" ? 22 : 18}
-                fill={selectedKey === "TCK" ? "#6366f1" : "rgba(99, 102, 241, 0.6)"}
-                stroke="#ffffff"
-                strokeWidth="1.5"
-                className="transition-all"
-              />
-              <text x="475" y="179" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white pointer-events-none">
-                TCK
-              </text>
-            </g>
-
-            <g className="cursor-pointer" onClick={() => setSelectedKey("PCK")}>
-              <circle
-                cx="430"
-                cy="245"
-                r={selectedKey === "PCK" ? 22 : 18}
-                fill={selectedKey === "PCK" ? "#10b981" : "rgba(16, 185, 129, 0.6)"}
-                stroke="#ffffff"
-                strokeWidth="1.5"
-                className="transition-all"
-              />
-              <text x="430" y="249" textAnchor="middle" className="font-mono text-[9px] font-bold fill-white pointer-events-none">
-                PCK
-              </text>
-            </g>
-
-            {/* Central TPACK Core */}
-            <g className="cursor-pointer" onClick={() => setSelectedKey("TPACK")}>
-              <circle
-                cx="430"
-                cy="195"
-                r={selectedKey === "TPACK" ? 24 : 20}
-                fill={selectedKey === "TPACK" ? "#9333ea" : "rgba(147, 51, 234, 0.85)"}
-                stroke="#ffffff"
-                strokeWidth="2"
-                className="transition-all animate-pulse"
-              />
-              <text x="430" y="198" textAnchor="middle" className="font-mono text-[8px] font-black fill-white pointer-events-none">
-                TPACK
-              </text>
-            </g>
-          </svg>
-
-          {/* Interactive Domain Spotlight Pill */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedKey}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              className="mt-2 w-full max-w-2xl px-3 py-2 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-between gap-3 text-left"
-            >
-              <div className="flex items-center space-x-2.5">
-                <div
-                  className="w-7 h-7 rounded-lg flex items-center justify-center text-white shrink-0 shadow-sm"
-                  style={{ backgroundColor: activeDomain.color }}
-                >
-                  <ActiveIcon className="w-4 h-4" />
-                </div>
-                <div>
-                  <span className="font-mono font-bold text-xs text-slate-900 block leading-tight">
-                    {activeDomain.code}: {activeDomain.name}
-                  </span>
-                  <p className="text-[11px] text-slate-600 font-sans leading-snug line-clamp-1">
-                    {activeDomain.desc}
-                  </p>
-                </div>
+                <ActiveIcon className="w-3.5 h-3.5" />
               </div>
-              <span className="shrink-0 text-[10px] font-mono text-slate-400 uppercase tracking-wider hidden sm:inline">
-                {"// TAP CIRCLE TO EXPLORE"}
-              </span>
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
-      )}
+              <div>
+                <span className="font-mono font-bold text-xs text-slate-900">
+                  {activeDomain.code} — {activeDomain.name}:{" "}
+                </span>
+                <span className="text-xs text-slate-600 font-sans">
+                  {activeDomain.desc}
+                </span>
+              </div>
+            </div>
+            <span className="shrink-0 text-[9px] font-mono text-slate-400 uppercase tracking-wider hidden md:inline">
+              {"// CLICK ANY REGION"}
+            </span>
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
-

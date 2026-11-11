@@ -300,16 +300,228 @@ export default function SlideCard({
             </p>
           </motion.div>
 
-          {/* Slide 1: Widescreen Landscape TPACK Diagram ONLY (Boxes removed per user request) */}
+          {/* Slide 1: Landscape TPACK Circle Diagram + 3 Technology Education Boxes */}
           {slide.id === 1 ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.32, duration: 0.4 }}
-              className="w-full"
-            >
-              <LandscapeTPACKDiagram />
-            </motion.div>
+            <div className="space-y-4 sm:space-y-5 pt-1 w-full">
+              {/* 1. Landscape-Shaped TPACK Circle Diagram */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 0.32, duration: 0.4 }}
+                className="w-full"
+              >
+                <LandscapeTPACKDiagram />
+              </motion.div>
+
+              {/* 2. Three Technology Education Boxes in Landscape (3 Columns) */}
+              <div className="w-full">
+                <div className="flex items-center justify-between mb-3 px-1">
+                  <span className="font-mono text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center space-x-2">
+                    <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                    <span>{"// 3 FOUNDATIONAL KNOWLEDGE PILLARS // TECHNOLOGY EDUCATION"}</span>
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-400 hidden sm:inline-block">
+                    {"[STATUS: ACTIVE TELEMETRY]"}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+                  {/* Pillar 01: Technological Knowledge (TK) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.38, duration: 0.4 }}
+                    onClick={() => setSelectedPointIndex(selectedPointIndex === 0 ? null : 0)}
+                    className={`relative p-4 sm:p-5 rounded-xl sm:rounded-2xl border transition-all duration-300 text-left overflow-hidden group cursor-pointer ${
+                      selectedPointIndex === 0
+                        ? "bg-white border-pink-400 shadow-xl ring-2 ring-pink-500/25 -translate-y-1"
+                        : "bg-white/95 border-pink-200/90 hover:border-pink-400 hover:shadow-lg hover:-translate-y-0.5"
+                    }`}
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 via-rose-400 to-transparent" />
+                    <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-pink-400 group-hover:border-pink-600 transition-colors pointer-events-none" />
+                    <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-pink-400 group-hover:border-pink-600 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-pink-400 group-hover:border-pink-600 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-pink-400 group-hover:border-pink-600 transition-colors pointer-events-none" />
+
+                    <svg className="absolute -right-2 -bottom-2 w-28 h-28 opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                      <path d="M 10 90 L 50 90 L 70 70 L 90 70 M 50 90 L 50 50 L 30 30" stroke="#ec4899" strokeWidth="2.5" fill="none" />
+                      <circle cx="90" cy="70" r="3" fill="#ec4899" />
+                      <circle cx="30" cy="30" r="3" fill="#ec4899" />
+                      <circle cx="50" cy="90" r="2.5" fill="#f43f5e" />
+                    </svg>
+
+                    <div className="flex items-center justify-between mb-2.5">
+                      <span className="font-mono text-xs font-black tracking-wider flex items-center space-x-1.5">
+                        <span className="px-1.5 py-0.5 rounded bg-pink-100 text-pink-700 text-[10px]">
+                          01 TK
+                        </span>
+                        <span className="text-[10px] text-slate-400 uppercase tracking-widest">EDTECH HARDWARE</span>
+                      </span>
+                      <span className="flex items-center space-x-1 text-[9px] font-mono text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>SYS.ONLINE</span>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-2.5 mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-pink-500 text-white flex items-center justify-center shrink-0 shadow-sm shadow-pink-500/30">
+                        <Cpu className="w-4 h-4" />
+                      </div>
+                      <h4 className="font-mono text-sm sm:text-base font-bold text-slate-900 group-hover:text-pink-600 transition-colors">
+                        Technological Knowledge
+                      </h4>
+                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-sans mb-3">
+                      Understanding tools, hardware, and digital systems in educational settings.
+                    </p>
+
+                    <div className="flex flex-wrap gap-1 mb-2.5">
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">AI TOOLS</span>
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">LMS PLATFORMS</span>
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">SMART HARDWARE</span>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                      <span className="tracking-widest text-pink-600 font-semibold">{"// TOOL.MASTERY"}</span>
+                      <span className="text-[9px] uppercase font-bold text-slate-300 group-hover:text-pink-600 transition-colors">
+                        {selectedPointIndex === 0 ? "FOCUSED" : "TAP TO FOCUS"}
+                      </span>
+                    </div>
+                  </motion.div>
+
+                  {/* Pillar 02: Pedagogical Knowledge (PK) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.46, duration: 0.4 }}
+                    onClick={() => setSelectedPointIndex(selectedPointIndex === 1 ? null : 1)}
+                    className={`relative p-4 sm:p-5 rounded-xl sm:rounded-2xl border transition-all duration-300 text-left overflow-hidden group cursor-pointer ${
+                      selectedPointIndex === 1
+                        ? "bg-white border-amber-400 shadow-xl ring-2 ring-amber-500/25 -translate-y-1"
+                        : "bg-white/95 border-amber-200/90 hover:border-amber-400 hover:shadow-lg hover:-translate-y-0.5"
+                    }`}
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-transparent" />
+                    <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-amber-400 group-hover:border-amber-600 transition-colors pointer-events-none" />
+                    <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-amber-400 group-hover:border-amber-600 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-amber-400 group-hover:border-amber-600 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-amber-400 group-hover:border-amber-600 transition-colors pointer-events-none" />
+
+                    <svg className="absolute -right-2 -bottom-2 w-28 h-28 opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                      <rect x="20" y="20" width="25" height="20" rx="3" stroke="#eab308" strokeWidth="2" fill="none" />
+                      <rect x="60" y="20" width="25" height="20" rx="3" stroke="#eab308" strokeWidth="2" fill="none" />
+                      <rect x="40" y="65" width="25" height="20" rx="3" stroke="#eab308" strokeWidth="2" fill="none" />
+                      <path d="M 32 40 L 32 52 L 52 52 L 52 65 M 72 40 L 72 52 L 52 52" stroke="#eab308" strokeWidth="2" fill="none" />
+                    </svg>
+
+                    <div className="flex items-center justify-between mb-2.5">
+                      <span className="font-mono text-xs font-black tracking-wider flex items-center space-x-1.5">
+                        <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px]">
+                          02 PK
+                        </span>
+                        <span className="text-[10px] text-slate-400 uppercase tracking-widest">INSTRUCTION METHOD</span>
+                      </span>
+                      <span className="flex items-center space-x-1 text-[9px] font-mono text-amber-600 font-bold bg-amber-50 px-1.5 py-0.5 rounded">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                        <span>ENGAGE.HIGH</span>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-2.5 mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-sm shadow-amber-500/30">
+                        <GraduationCap className="w-4 h-4" />
+                      </div>
+                      <h4 className="font-mono text-sm sm:text-base font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                        Pedagogical Knowledge
+                      </h4>
+                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-sans mb-3">
+                      Methods, instructional practices, differentiated teaching, and student evaluation.
+                    </p>
+
+                    <div className="flex flex-wrap gap-1 mb-2.5">
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">INQUIRY</span>
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">COLLABORATION</span>
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">SCAFFOLDING</span>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                      <span className="tracking-widest text-amber-600 font-semibold">{"// PEDAGOGY.OPTIMAL"}</span>
+                      <span className="text-[9px] uppercase font-bold text-slate-300 group-hover:text-amber-600 transition-colors">
+                        {selectedPointIndex === 1 ? "FOCUSED" : "TAP TO FOCUS"}
+                      </span>
+                    </div>
+                  </motion.div>
+
+                  {/* Pillar 03: Content Knowledge (CK) */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.54, duration: 0.4 }}
+                    onClick={() => setSelectedPointIndex(selectedPointIndex === 2 ? null : 2)}
+                    className={`relative p-4 sm:p-5 rounded-xl sm:rounded-2xl border transition-all duration-300 text-left overflow-hidden group cursor-pointer ${
+                      selectedPointIndex === 2
+                        ? "bg-white border-cyan-400 shadow-xl ring-2 ring-cyan-500/25 -translate-y-1"
+                        : "bg-white/95 border-cyan-200/90 hover:border-cyan-400 hover:shadow-lg hover:-translate-y-0.5"
+                    }`}
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-400 to-transparent" />
+                    <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-cyan-400 group-hover:border-cyan-600 transition-colors pointer-events-none" />
+                    <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-cyan-400 group-hover:border-cyan-600 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-cyan-400 group-hover:border-cyan-600 transition-colors pointer-events-none" />
+                    <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-cyan-400 group-hover:border-cyan-600 transition-colors pointer-events-none" />
+
+                    <svg className="absolute -right-2 -bottom-2 w-28 h-28 opacity-10 pointer-events-none" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="30" stroke="#06b6d4" strokeWidth="2" fill="none" />
+                      <circle cx="50" cy="50" r="10" stroke="#06b6d4" strokeWidth="2" fill="none" />
+                      <path d="M 20 50 L 80 50 M 50 20 L 50 80" stroke="#06b6d4" strokeWidth="1.5" />
+                    </svg>
+
+                    <div className="flex items-center justify-between mb-2.5">
+                      <span className="font-mono text-xs font-black tracking-wider flex items-center space-x-1.5">
+                        <span className="px-1.5 py-0.5 rounded bg-cyan-100 text-cyan-700 text-[10px]">
+                          03 CK
+                        </span>
+                        <span className="text-[10px] text-slate-400 uppercase tracking-widest">CURRICULUM CORE</span>
+                      </span>
+                      <span className="flex items-center space-x-1 text-[9px] font-mono text-cyan-600 font-bold bg-cyan-50 px-1.5 py-0.5 rounded">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
+                        <span>CORE.EXACT</span>
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-2.5 mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-cyan-500 text-white flex items-center justify-center shrink-0 shadow-sm shadow-cyan-500/30">
+                        <BookOpen className="w-4 h-4" />
+                      </div>
+                      <h4 className="font-mono text-sm sm:text-base font-bold text-slate-900 group-hover:text-cyan-600 transition-colors">
+                        Content Knowledge
+                      </h4>
+                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-sans mb-3">
+                      The core subject matter, disciplinary theories, scientific facts, and curriculum logic.
+                    </p>
+
+                    <div className="flex flex-wrap gap-1 mb-2.5">
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">THEORIES</span>
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">STEM LOGIC</span>
+                      <span className="text-[9px] font-mono font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">DISCIPLINARY</span>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                      <span className="tracking-widest text-cyan-600 font-semibold">{"// SUBJECT.COHERENCE"}</span>
+                      <span className="text-[9px] uppercase font-bold text-slate-300 group-hover:text-cyan-600 transition-colors">
+                        {selectedPointIndex === 2 ? "FOCUSED" : "TAP TO FOCUS"}
+                      </span>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
           ) : slide.id === 2 ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
