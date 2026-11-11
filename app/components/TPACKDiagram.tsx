@@ -356,8 +356,14 @@ export default function TPACKDiagram() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ type: "spring", stiffness: 320, damping: 26 }}
-            className={`p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-white border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
+            className={`p-3.5 sm:p-7 rounded-xl sm:rounded-2xl bg-white/95 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
           >
+            {/* High-Tech HUD Corner Accents */}
+            <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-slate-300 pointer-events-none" />
+            <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-slate-300 pointer-events-none" />
+            <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-slate-300 pointer-events-none" />
+            <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-slate-300 pointer-events-none" />
+
             {/* Top ambient color glow */}
             <div
               className={`absolute top-0 left-0 right-0 h-28 bg-gradient-to-b ${currentWorld.theme.bgGradient} pointer-events-none`}
@@ -397,11 +403,15 @@ export default function TPACKDiagram() {
               </p>
             </div>
 
-            {/* Classroom Scenario */}
-            <div className="relative z-10 p-2.5 sm:p-4 rounded-lg sm:rounded-xl bg-slate-50 border border-slate-100 text-[11px] sm:text-sm text-slate-700 font-sans leading-relaxed">
-              <span className="font-mono font-bold text-slate-900 block mb-1">
-                IN THE CLASSROOM:
-              </span>
+            {/* High-Tech Classroom Scenario Box */}
+            <div className="relative z-10 p-3 sm:p-4 rounded-xl bg-slate-50/90 border border-slate-200/90 border-l-4 border-l-blue-500 text-[11px] sm:text-sm text-slate-700 font-sans leading-relaxed shadow-sm">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="font-mono font-bold text-slate-900 flex items-center space-x-1.5 text-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping" />
+                  <span>IN THE CLASSROOM:</span>
+                </span>
+                <span className="font-mono text-[9px] text-slate-400 tracking-widest uppercase">PRACTICE.SYS</span>
+              </div>
               {currentWorld.classroomScenario}
             </div>
 
