@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { SlideData } from "../data/slides";
 import SlideIcon from "./SlideIcon";
-import TPACKDiagram from "./TPACKDiagram";
 import LandscapeTPACKDiagram from "./LandscapeTPACKDiagram";
 import NetworkDiagram from "./NetworkDiagram";
 import { ChevronRight, CheckCircle2, RotateCcw, LogOut, Cpu, GraduationCap, BookOpen } from "lucide-react";
@@ -300,30 +299,18 @@ export default function SlideCard({
             </p>
           </motion.div>
 
-          {/* Slide 1: Widescreen Landscape TPACK Diagram & Technology Education Boxes */}
+          {/* Slide 1: 3 Technology Education Boxes in Landscape */}
           {slide.id === 1 ? (
-            <div className="space-y-4 sm:space-y-6 pt-1 w-full">
-              {/* 1. Landscape TPACK Diagram (True Widescreen Oval Model) */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: 0.32, duration: 0.45 }}
-                className="w-full"
-              >
-                <LandscapeTPACKDiagram />
-              </motion.div>
-
-              {/* 2. Three Technology Education Boxes in Landscape (3 Columns) */}
-              <div className="w-full">
-                <div className="flex items-center justify-between mb-3 px-1">
-                  <span className="font-mono text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center space-x-2">
-                    <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                    <span>{"// 3 FOUNDATIONAL KNOWLEDGE PILLARS // TECHNOLOGY EDUCATION"}</span>
-                  </span>
-                  <span className="text-[10px] font-mono text-slate-400 hidden sm:inline-block">
-                    {"[STATUS: ACTIVE TELEMETRY]"}
-                  </span>
-                </div>
+            <div className="w-full pt-1">
+              <div className="flex items-center justify-between mb-3 px-1">
+                <span className="font-mono text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center space-x-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                  <span>{"// 3 FOUNDATIONAL KNOWLEDGE PILLARS // TECHNOLOGY EDUCATION"}</span>
+                </span>
+                <span className="text-[10px] font-mono text-slate-400 hidden sm:inline-block">
+                  {"[STATUS: ACTIVE TELEMETRY]"}
+                </span>
+              </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
                   {/* Pillar 01: Technological Knowledge (TK) */}
@@ -548,7 +535,6 @@ export default function SlideCard({
                   </motion.div>
                 </div>
               </div>
-            </div>
           ) : slide.id === 2 ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -556,7 +542,7 @@ export default function SlideCard({
               transition={{ delay: 0.32, duration: 0.4 }}
               className="w-full"
             >
-              <TPACKDiagram />
+              <LandscapeTPACKDiagram />
             </motion.div>
           ) : slide.id === 4 ? (
             /* Slide 4: Interactive Network Architecture Diagram */
