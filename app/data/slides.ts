@@ -107,5 +107,16 @@ export const slides: SlideData[] = [
     category: "The Seven Components of TPACK",
     accent: "cyan",
     icon: "Globe"
+  },
+  {
+    id: 9,
+    tpackKey: "ALL",
+    title: "Thank You!",
+    subtitle: "End of Presentation // Q&A & Discussion",
+    content:
+      "Thank you for your time and attention!",
+    category: "Conclusion",
+    accent: "cyan",
+    icon: "GraduationCap"
   }
 ];

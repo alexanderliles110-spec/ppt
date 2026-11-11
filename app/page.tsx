@@ -161,6 +161,14 @@ export default function PresentationPage() {
           direction={direction}
           totalSlides={totalSlides}
           onSelectSlide={goToSlide}
+          onRestart={() => goToSlide(0)}
+          onExit={() => {
+            if (typeof document !== "undefined" && document.fullscreenElement && document.exitFullscreen) {
+              document.exitFullscreen().catch(() => {});
+              setIsFullscreen(false);
+            }
+            goToSlide(0);
+          }}
         />
       </div>
 

@@ -6,12 +6,15 @@ import { SlideData, TPACKKey } from "../data/slides";
 import SlideIcon from "./SlideIcon";
 import LandscapeTPACKDiagram from "./LandscapeTPACKDiagram";
 import TechEdBoxDecoration from "./TechEdBoxDecoration";
+import { RotateCcw, LogOut } from "lucide-react";
 
 interface SlideCardProps {
   slide: SlideData;
   direction: number;
   totalSlides: number;
   onSelectSlide?: (index: number) => void;
+  onRestart?: () => void;
+  onExit?: () => void;
 }
 
 const keyToSlideIndex: Record<TPACKKey, number> = {
@@ -40,7 +43,9 @@ const popFromPictureOffsets: Record<Exclude<TPACKKey, "ALL">, { x: number; y: nu
 export default function SlideCard({
   slide,
   totalSlides,
-  onSelectSlide
+  onSelectSlide,
+  onRestart,
+  onExit
 }: SlideCardProps) {
   const themeStyles = {
     cyan: {
@@ -70,6 +75,7 @@ export default function SlideCard({
   }[slide.accent];
 
   const isSlideOne = slide.id === 1;
+  const isThankYouSlide = slide.id === totalSlides;
   const originOffset =
     slide.tpackKey !== "ALL"
       ? popFromPictureOffsets[slide.tpackKey]
@@ -140,7 +146,7 @@ export default function SlideCard({
             {/* Slide Heading & Subtitle */}
             <div className="space-y-1">
               <motion.h1
-                key={`title-${slide.title}`}
+                key={`title-${slide.title}-${slide.id}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
@@ -150,7 +156,7 @@ export default function SlideCard({
               </motion.h1>
 
               <motion.p
-                key={`sub-${slide.subtitle}`}
+                key={`sub-${slide.subtitle}-${slide.id}`}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
@@ -160,7 +166,7 @@ export default function SlideCard({
               </motion.p>
             </div>
 
-            {/* Slide 1 Top Definition Box (Restored First Page!) */}
+            {/* Slide 1 Top Definition Box (First Page) */}
             <AnimatePresence mode="popLayout">
               {isSlideOne && (
                 <motion.div
@@ -195,7 +201,7 @@ export default function SlideCard({
 
             {/* Slides 2–8: The Discussion Box that Pops/Comes FORWARD directly from the active circle in the Picture! */}
             <AnimatePresence mode="popLayout">
-              {!isSlideOne && (
+              {!isSlideOne && !isThankYouSlide && (
                 <motion.div
                   key={`forward-discussion-${slide.id}`}
                   initial={{
@@ -248,6 +254,42 @@ export default function SlideCard({
                     <p className="text-sm sm:text-lg md:text-xl text-slate-800 font-sans leading-relaxed font-medium">
                       {slide.content}
                     </p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Final Slide (Thank You! + Restart / Exit Buttons) */}
+              {isThankYouSlide && (
+                <motion.div
+                  key="thank-you-box"
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                  transition={{ type: "spring", stiffness: 160, damping: 20 }}
+                  className={`relative p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-white via-sky-50/60 to-indigo-50/55 border-2 ${themeStyles.border} shadow-xl overflow-hidden text-center space-y-4`}
+                >
+                  <TechEdBoxDecoration variant="wide" accent="cyan" />
+
+                  <p className="relative z-10 text-base sm:text-xl md:text-2xl text-slate-800 font-mono font-bold">
+                    {slide.content}
+                  </p>
+
+                  <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-1">
+                    <button
+                      onClick={onRestart}
+                      className="flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-mono text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 transition active:scale-95 cursor-pointer"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      <span>Restart Presentation</span>
+                    </button>
+
+                    <button
+                      onClick={onExit}
+                      className="flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono text-xs sm:text-sm font-bold shadow-md transition active:scale-95 cursor-pointer"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Exit Deck</span>
+                    </button>
                   </div>
                 </motion.div>
               )}
