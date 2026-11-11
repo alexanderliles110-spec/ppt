@@ -6,6 +6,7 @@ import { Cpu, GraduationCap, BookOpen, Layers, Atom, Network, Globe2 } from "luc
 import TechEdBoxDecoration from "./TechEdBoxDecoration";
 
 interface DomainInfo {
+  num: number;
   key: string;
   name: string;
   code: string;
@@ -15,59 +16,66 @@ interface DomainInfo {
 }
 
 const domains: Record<string, DomainInfo> = {
-  TK: {
-    key: "TK",
-    name: "Technological Knowledge",
-    code: "TK",
-    desc: "Understanding digital tools, hardware, operating systems, and educational software.",
-    color: "#ec4899",
-    icon: Cpu
-  },
-  PK: {
-    key: "PK",
-    name: "Pedagogical Knowledge",
-    code: "PK",
-    desc: "Methods and practices of teaching, lesson planning, instructional strategies, and student evaluation.",
-    color: "#eab308",
-    icon: GraduationCap
-  },
   CK: {
+    num: 1,
     key: "CK",
     name: "Content Knowledge",
     code: "CK",
-    desc: "The core subject matter, theories, concepts, and disciplinary knowledge to be learned.",
+    desc: "Involves the teacher's knowledge and understanding of the subject matter or topic being taught.",
     color: "#06b6d4",
     icon: BookOpen
   },
-  TPK: {
-    key: "TPK",
-    name: "Technological Pedagogical Knowledge",
-    code: "TPK",
-    desc: "How digital tools and classroom technology transform teaching strategies and student engagement.",
-    color: "#f43f5e",
-    icon: Network
+  PK: {
+    num: 2,
+    key: "PK",
+    name: "Pedagogical Knowledge",
+    code: "PK",
+    desc: "Focuses on the teacher's understanding of different teaching methods, strategies, and approaches that help students learn.",
+    color: "#eab308",
+    icon: GraduationCap
   },
-  TCK: {
-    key: "TCK",
-    name: "Technological Content Knowledge",
-    code: "TCK",
-    desc: "Using technology to represent, simulate, and visualize specific subject matter concepts.",
-    color: "#6366f1",
-    icon: Atom
+  TK: {
+    num: 3,
+    key: "TK",
+    name: "Technological Knowledge",
+    code: "TK",
+    desc: "Includes the teacher's ability to understand and use digital tools, technologies, and systems in teaching and learning.",
+    color: "#ec4899",
+    icon: Cpu
   },
   PCK: {
+    num: 4,
     key: "PCK",
     name: "Pedagogical Content Knowledge",
     code: "PCK",
-    desc: "Blending subject knowledge with effective teaching strategies to make content accessible.",
+    desc: "Combines subject knowledge with teaching strategies to make lessons easier for students to understand.",
     color: "#10b981",
     icon: Layers
   },
+  TCK: {
+    num: 5,
+    key: "TCK",
+    name: "Technological Content Knowledge",
+    code: "TCK",
+    desc: "Involves using technology to present, explain, and help students understand specific subject matter.",
+    color: "#6366f1",
+    icon: Atom
+  },
+  TPK: {
+    num: 6,
+    key: "TPK",
+    name: "Technological Pedagogical Knowledge",
+    code: "TPK",
+    desc: "Focuses on how technology can support and improve different teaching methods and strategies.",
+    color: "#f43f5e",
+    icon: Network
+  },
   TPACK: {
+    num: 7,
     key: "TPACK",
     name: "Technological Pedagogical Content Knowledge",
     code: "TPACK",
-    desc: "The core intersection: seamlessly integrating technology, pedagogy, and content for 21st-century learning.",
+    desc: "Brings together technology, teaching strategies, and subject knowledge to create effective and meaningful learning experiences.",
     color: "#7c3aed",
     icon: Globe2
   }
@@ -85,7 +93,7 @@ export default function LandscapeTPACKDiagram() {
   const ck = { cx: 515, cy: 205, rx: 142, ry: 74 };
 
   return (
-    <div className="w-full bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/40 rounded-2xl border border-sky-200/90 shadow-md p-2.5 sm:p-3.5 relative overflow-hidden group">
+    <div className="w-full bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/40 rounded-2xl border border-sky-200/90 shadow-md p-3.5 sm:p-5 relative overflow-hidden group">
       {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
       <TechEdBoxDecoration variant="diagram" accent="cyan" />
 
@@ -95,28 +103,11 @@ export default function LandscapeTPACKDiagram() {
       <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-blue-500 pointer-events-none z-10" />
       <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-blue-500 pointer-events-none z-10" />
 
-      {/* Top Tech Header Bar */}
-      <div className="relative z-10 flex items-center justify-between gap-2 border-b border-slate-200/70 pb-1.5 mb-1.5 font-mono text-[9px] sm:text-[11px]">
-        <div className="flex items-center space-x-2">
-          <span className="flex space-x-1">
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-500 animate-pulse" />
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400" />
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-cyan-400" />
-          </span>
-          <span className="font-bold tracking-wider text-slate-700 uppercase">
-            {"// TPACK.LANDSCAPE_FRAMEWORK_MODEL"}
-          </span>
-        </div>
-        <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-600 font-mono font-bold text-[9px] uppercase tracking-wider">
-          FIG 1.0 • INTERACTIVE VENN
-        </span>
-      </div>
-
       {/* Landscape TPACK Venn Diagram SVG */}
       <div className="relative z-10 w-full flex flex-col items-center">
         <svg
           viewBox="0 0 860 356"
-          className="w-full h-auto max-h-[195px] sm:max-h-[230px] select-none overflow-visible"
+          className="w-full h-auto max-h-[230px] sm:max-h-[275px] select-none overflow-visible"
         >
           <defs>
             <clipPath id="landscape-clip-tk">
@@ -317,7 +308,7 @@ export default function LandscapeTPACKDiagram() {
             </text>
           </g>
 
-          {/* POINTER ARROWS & INTERSECTION LABELS (MATCHING CLASSIC DIAGRAM IN LANDSCAPE) */}
+          {/* POINTER ARROWS & INTERSECTION LABELS */}
 
           {/* 1. Top TPACK Label & Bent Pointer Line to Center */}
           <g className="cursor-pointer" onClick={() => setSelectedKey("TPACK")}>
@@ -411,34 +402,31 @@ export default function LandscapeTPACKDiagram() {
           </text>
         </svg>
 
-        {/* Compact Interactive Domain Bar */}
+        {/* Interactive Domain Definition Bar */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedKey}
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
-            className="mt-1 w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-between gap-3 text-left"
+            className="mt-2 w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-between gap-3 text-left"
           >
-            <div className="flex items-center space-x-2.5">
+            <div className="flex items-center space-x-3">
               <div
-                className="w-6 h-6 rounded-lg flex items-center justify-center text-white shrink-0 shadow-sm"
+                className="w-7 h-7 rounded-lg flex items-center justify-center text-white shrink-0 shadow-sm"
                 style={{ backgroundColor: activeDomain.color }}
               >
-                <ActiveIcon className="w-3.5 h-3.5" />
+                <ActiveIcon className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-mono font-bold text-xs text-slate-900">
-                  {activeDomain.code} — {activeDomain.name}:{" "}
+                <span className="font-mono font-bold text-xs sm:text-sm text-slate-900">
+                  {activeDomain.num}. {activeDomain.code} – {activeDomain.name}:{" "}
                 </span>
-                <span className="text-xs text-slate-600 font-sans">
+                <span className="text-xs sm:text-sm text-slate-700 font-sans">
                   {activeDomain.desc}
                 </span>
               </div>
             </div>
-            <span className="shrink-0 text-[9px] font-mono text-slate-400 uppercase tracking-wider hidden md:inline">
-              {"// CLICK ANY REGION"}
-            </span>
           </motion.div>
         </AnimatePresence>
       </div>

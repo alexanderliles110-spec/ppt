@@ -14,13 +14,11 @@ import {
 } from "lucide-react";
 
 export interface TPACKWorld {
-  key: "TK" | "PK" | "CK" | "TPK" | "TCK" | "PCK" | "TPACK";
+  num: number;
+  key: "CK" | "PK" | "TK" | "PCK" | "TCK" | "TPK" | "TPACK";
   title: string;
   fullName: string;
-  worldName: string;
   desc: string;
-  examples: string[];
-  classroomScenario: string;
   icon: React.ElementType;
   theme: {
     bgGradient: string;
@@ -33,53 +31,23 @@ export interface TPACKWorld {
   };
 }
 
+export const tpackOrder: ("CK" | "PK" | "TK" | "PCK" | "TCK" | "TPK" | "TPACK")[] = [
+  "CK",
+  "PK",
+  "TK",
+  "PCK",
+  "TCK",
+  "TPK",
+  "TPACK"
+];
+
 export const tpackWorlds: Record<string, TPACKWorld> = {
-  TK: {
-    key: "TK",
-    title: "TK",
-    fullName: "Technological Knowledge",
-    worldName: "Technological Knowledge Domain",
-    desc: "Includes the teacher's ability to understand and use digital tools, technologies, and systems in teaching and learning.",
-    examples: ["Operating Systems", "Hardware Devices", "Software Suites", "Interactive Displays", "AI Platforms"],
-    classroomScenario: "Navigating digital platforms, setting up classroom hardware, and mastering software workflows effortlessly.",
-    icon: Cpu,
-    theme: {
-      bgGradient: "from-pink-500/10 to-transparent",
-      border: "border-pink-300",
-      stroke: "#ec4899",
-      textColor: "text-pink-600",
-      badgeBg: "bg-pink-100 text-pink-800",
-      fillColor: "rgba(236, 72, 153, 0.22)",
-      activeFill: "rgba(236, 72, 153, 0.55)"
-    }
-  },
-  PK: {
-    key: "PK",
-    title: "PK",
-    fullName: "Pedagogical Knowledge",
-    worldName: "Pedagogical Knowledge Domain",
-    desc: "Focuses on the teacher's understanding of different teaching methods, strategies, and approaches that help students learn.",
-    examples: ["Lesson Design", "Student Assessment", "Collaborative Groupwork", "Differentiated Instruction", "Behavior Management"],
-    classroomScenario: "Structuring an engaging debate, tailoring pacing to different learning styles, and diagnosing misconceptions.",
-    icon: GraduationCap,
-    theme: {
-      bgGradient: "from-amber-500/10 to-transparent",
-      border: "border-amber-300",
-      stroke: "#eab308",
-      textColor: "text-amber-600",
-      badgeBg: "bg-amber-100 text-amber-800",
-      fillColor: "rgba(234, 179, 8, 0.22)",
-      activeFill: "rgba(234, 179, 8, 0.55)"
-    }
-  },
   CK: {
+    num: 1,
     key: "CK",
     title: "CK",
     fullName: "Content Knowledge",
-    worldName: "Content Knowledge Domain",
     desc: "Involves the teacher's knowledge and understanding of the subject matter or topic being taught.",
-    examples: ["Scientific Theories", "Historical Timelines", "Mathematical Proofs", "Literary Analysis", "Core Subject Facts"],
-    classroomScenario: "Mastering subject standards, understanding foundational theories, and answering deep student inquiries.",
     icon: BookOpen,
     theme: {
       bgGradient: "from-cyan-500/10 to-transparent",
@@ -91,14 +59,46 @@ export const tpackWorlds: Record<string, TPACKWorld> = {
       activeFill: "rgba(6, 182, 212, 0.55)"
     }
   },
+  PK: {
+    num: 2,
+    key: "PK",
+    title: "PK",
+    fullName: "Pedagogical Knowledge",
+    desc: "Focuses on the teacher's understanding of different teaching methods, strategies, and approaches that help students learn.",
+    icon: GraduationCap,
+    theme: {
+      bgGradient: "from-amber-500/10 to-transparent",
+      border: "border-amber-300",
+      stroke: "#eab308",
+      textColor: "text-amber-600",
+      badgeBg: "bg-amber-100 text-amber-800",
+      fillColor: "rgba(234, 179, 8, 0.22)",
+      activeFill: "rgba(234, 179, 8, 0.55)"
+    }
+  },
+  TK: {
+    num: 3,
+    key: "TK",
+    title: "TK",
+    fullName: "Technological Knowledge",
+    desc: "Includes the teacher's ability to understand and use digital tools, technologies, and systems in teaching and learning.",
+    icon: Cpu,
+    theme: {
+      bgGradient: "from-pink-500/10 to-transparent",
+      border: "border-pink-300",
+      stroke: "#ec4899",
+      textColor: "text-pink-600",
+      badgeBg: "bg-pink-100 text-pink-800",
+      fillColor: "rgba(236, 72, 153, 0.22)",
+      activeFill: "rgba(236, 72, 153, 0.55)"
+    }
+  },
   PCK: {
+    num: 4,
     key: "PCK",
     title: "PCK",
     fullName: "Pedagogical Content Knowledge",
-    worldName: "Pedagogical Content Knowledge Synthesis",
     desc: "Combines subject knowledge with teaching strategies to make lessons easier for students to understand.",
-    examples: ["Metaphors & Analogies", "Scaffolded Exercises", "Misconception Interventions", "Conceptual Roadmaps"],
-    classroomScenario: "Using a memorable real-life analogy to explain photosynthesis or complex fractions so students instantly grasp it.",
     icon: Layers,
     theme: {
       bgGradient: "from-emerald-500/10 to-transparent",
@@ -111,13 +111,11 @@ export const tpackWorlds: Record<string, TPACKWorld> = {
     }
   },
   TCK: {
+    num: 5,
     key: "TCK",
     title: "TCK",
     fullName: "Technological Content Knowledge",
-    worldName: "Technological Content Knowledge Synthesis",
     desc: "Involves using technology to present, explain, and help students understand specific subject matter.",
-    examples: ["PhET Science Simulations", "GeoGebra Geometry", "Digital GIS Maps", "3D Anatomy Explorers"],
-    classroomScenario: "Displaying a 3D interactive molecular model so students manipulate chemical bonds in virtual space.",
     icon: Atom,
     theme: {
       bgGradient: "from-indigo-500/10 to-transparent",
@@ -130,13 +128,11 @@ export const tpackWorlds: Record<string, TPACKWorld> = {
     }
   },
   TPK: {
+    num: 6,
     key: "TPK",
     title: "TPK",
     fullName: "Technological Pedagogical Knowledge",
-    worldName: "Technological Pedagogical Knowledge Synthesis",
     desc: "Focuses on how technology can support and improve different teaching methods and strategies.",
-    examples: ["Interactive Live Polls", "Gamified Quizzes (Kahoot)", "Online Discussion Boards", "Peer Feedback Tools"],
-    classroomScenario: "Using real-time audience polling to check student understanding and immediately pivot the discussion.",
     icon: Network,
     theme: {
       bgGradient: "from-rose-500/10 to-transparent",
@@ -149,13 +145,11 @@ export const tpackWorlds: Record<string, TPACKWorld> = {
     }
   },
   TPACK: {
+    num: 7,
     key: "TPACK",
     title: "TPACK",
     fullName: "Technological Pedagogical Content Knowledge",
-    worldName: "Unified TPACK Core",
     desc: "Brings together technology, teaching strategies, and subject knowledge to create effective and meaningful learning experiences.",
-    examples: ["Global Virtual Exchanges", "Immersive Project Inquiry", "Student-Led Digital Portfolios", "Flipped Classrooms"],
-    classroomScenario: "Designing a collaborative inquiry project where students use digital tools to research, solve, and present solutions for real-world environmental problems.",
     icon: Globe2,
     theme: {
       bgGradient: "from-purple-500/15 to-transparent",
@@ -170,14 +164,14 @@ export const tpackWorlds: Record<string, TPACKWorld> = {
 };
 
 export default function TPACKDiagram() {
-  const [activeKey, setActiveKey] = useState<keyof typeof tpackWorlds>("TPACK");
+  const [activeKey, setActiveKey] = useState<keyof typeof tpackWorlds>("CK");
   const currentWorld = tpackWorlds[activeKey];
   const IconComponent = currentWorld.icon;
 
   return (
-    <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-5 py-0.5 sm:py-1">
-      {/* Venn Diagram Visual Canvas (Landscape Oval SVG layout, mobile responsive) */}
-      <div className="relative w-full max-w-[250px] sm:max-w-[320px] lg:max-w-[360px] aspect-[3/2] flex items-center justify-center shrink-0 mx-auto">
+    <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 py-1">
+      {/* Venn Diagram Visual Canvas (Landscape Oval SVG layout) */}
+      <div className="relative w-full max-w-[290px] sm:max-w-[360px] lg:max-w-[400px] aspect-[3/2] flex items-center justify-center shrink-0 mx-auto">
         <svg
           viewBox="0 0 600 400"
           className="w-full h-full overflow-visible drop-shadow-sm select-none"
@@ -335,112 +329,92 @@ export default function TPACKDiagram() {
         </svg>
       </div>
 
-      {/* Selected Component Card: Responsive & Elegant for Mobile & Desktop */}
-      <div className="flex-1 flex flex-col justify-center space-y-2.5 sm:space-y-4 w-full">
-        {/* Component Tabs for Instant Tap Navigation */}
-        <div className="flex flex-wrap gap-1 sm:gap-2 justify-center lg:justify-start">
-          {Object.keys(tpackWorlds).map((k) => {
+      {/* The Seven Components of TPACK (Exact Content Only) */}
+      <div className="flex-1 flex flex-col justify-center space-y-3 w-full">
+        {/* 7 Component Buttons in exact 1-7 order: CK, PK, TK, PCK, TCK, TPK, TPACK */}
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-center lg:justify-start">
+          {tpackOrder.map((k) => {
+            const item = tpackWorlds[k];
             const isSelected = activeKey === k;
             return (
               <button
                 key={k}
-                onClick={() => setActiveKey(k as keyof typeof tpackWorlds)}
-                className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl font-mono text-[11px] sm:text-xs font-bold transition-all duration-200 cursor-pointer ${
+                onClick={() => setActiveKey(k)}
+                className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl font-mono text-xs font-bold transition-all duration-200 cursor-pointer ${
                   isSelected
                     ? "bg-slate-900 text-white shadow-md scale-105"
                     : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
                 }`}
               >
-                {k}
+                {item.num}. {item.title}
               </button>
             );
           })}
         </div>
 
-        {/* Selected Component Card: Steps Forward on Selection */}
+        {/* Selected Component Box (Exact Title & Definition Only) */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentWorld.key}
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, scale: 0.96, y: 8 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            exit={{ opacity: 0, scale: 0.96, y: -8 }}
             transition={{ type: "spring", stiffness: 320, damping: 26 }}
-            className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/35 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
+            className={`p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white via-sky-50/35 to-indigo-50/35 border ${currentWorld.theme.border} shadow-lg relative overflow-hidden`}
           >
             {/* Inside-Box Technology Education Orbital & Glowing Icon Orbs Design */}
             <TechEdBoxDecoration variant="wide" accent="cyan" />
 
-            {/* High-Tech HUD Corner Accents */}
-            <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-slate-300 pointer-events-none" />
-            <div className="absolute top-2 right-2 w-2 h-2 border-t-2 border-r-2 border-slate-300 pointer-events-none" />
-            <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-slate-300 pointer-events-none" />
-            <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-slate-300 pointer-events-none" />
-
             {/* Top ambient color glow */}
             <div
-              className={`absolute top-0 left-0 right-0 h-28 bg-gradient-to-b ${currentWorld.theme.bgGradient} pointer-events-none`}
+              className={`absolute top-0 left-0 right-0 h-24 bg-gradient-to-b ${currentWorld.theme.bgGradient} pointer-events-none`}
             />
 
-            <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 border-b border-slate-100 pb-3 sm:pb-4">
-              <div className="flex items-center space-x-2.5 sm:space-x-3.5">
-                <div className={`p-2 sm:p-2.5 rounded-lg sm:rounded-xl bg-slate-50 border ${currentWorld.theme.border} ${currentWorld.theme.textColor}`}>
-                  <IconComponent className="w-4 h-4 sm:w-6 sm:h-6" />
-                </div>
-
-                <div>
-                  <span className="font-mono text-[10px] sm:text-xs uppercase font-semibold text-slate-400 tracking-wider">
-                    {currentWorld.worldName}
-                  </span>
-                  <div className="flex items-center space-x-1.5 sm:space-x-2 mt-0.5">
-                    <h3 className={`font-mono text-lg sm:text-2xl font-black ${currentWorld.theme.textColor}`}>
-                      {currentWorld.title}
-                    </h3>
-                    <span className="text-slate-300 font-mono">—</span>
-                    <h4 className="font-mono text-xs sm:text-base font-bold text-slate-800">
-                      {currentWorld.fullName}
-                    </h4>
-                  </div>
-                </div>
+            <div className="relative z-10 flex items-center space-x-3 border-b border-slate-100 pb-3">
+              <div className={`p-2 sm:p-2.5 rounded-xl bg-slate-50 border ${currentWorld.theme.border} ${currentWorld.theme.textColor} shrink-0`}>
+                <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
 
-              <span className={`px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full font-mono text-[10px] sm:text-xs font-bold uppercase shadow-sm ${currentWorld.theme.badgeBg}`}>
-                Component {Object.keys(tpackWorlds).indexOf(currentWorld.key) + 1} of 7
-              </span>
+              <h3 className="font-mono text-sm sm:text-lg md:text-xl font-black text-slate-900">
+                <span className={currentWorld.theme.textColor}>
+                  {currentWorld.num}. {currentWorld.title}
+                </span>
+                {" – "}
+                <span>{currentWorld.fullName}</span>
+              </h3>
             </div>
 
-            {/* Core Definition */}
-            <div className="relative z-10 py-2.5 sm:py-3.5">
-              <p className="text-xs sm:text-base text-slate-800 font-sans leading-relaxed">
+            {/* Exact Definition */}
+            <div className="relative z-10 pt-3">
+              <p className="text-sm sm:text-base md:text-lg text-slate-800 font-sans leading-relaxed">
                 {currentWorld.desc}
               </p>
             </div>
-
-            {/* High-Tech Classroom Scenario Box */}
-            <div className="relative z-10 p-3 sm:p-4 rounded-xl bg-slate-50/90 border border-slate-200/90 border-l-4 border-l-blue-500 text-[11px] sm:text-sm text-slate-700 font-sans leading-relaxed shadow-sm">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="font-mono font-bold text-slate-900 flex items-center space-x-1.5 text-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping" />
-                  <span>IN THE CLASSROOM:</span>
-                </span>
-                <span className="font-mono text-[9px] text-slate-400 tracking-widest uppercase">PRACTICE.SYS</span>
-              </div>
-              {currentWorld.classroomScenario}
-            </div>
-
-            {/* Key Elements Tags */}
-            <div className="relative z-10 pt-2.5 sm:pt-3 border-t border-slate-100 flex flex-wrap items-center gap-1 sm:gap-1.5 text-xs font-mono">
-              <span className="text-slate-400 mr-1 text-[10px] sm:text-[11px] font-semibold">KEY ELEMENTS:</span>
-              {currentWorld.examples.map((ex, i) => (
-                <span
-                  key={i}
-                  className="px-2 py-0.5 rounded-md sm:rounded-lg bg-slate-100 border border-slate-200 text-slate-700 text-[10px] sm:text-[11px] font-medium"
-                >
-                  {ex}
-                </span>
-              ))}
-            </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* All 7 Components Quick List (1. CK through 7. TPACK) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 pt-0.5">
+          {tpackOrder.map((k) => {
+            const item = tpackWorlds[k];
+            const isSelected = activeKey === k;
+            return (
+              <div
+                key={k}
+                onClick={() => setActiveKey(k)}
+                className={`px-3 py-1.5 rounded-lg border text-left transition-all cursor-pointer ${
+                  isSelected
+                    ? `${item.theme.border} bg-sky-50/70 shadow-sm font-bold`
+                    : "border-slate-200/80 bg-white/80 hover:bg-slate-50"
+                }`}
+              >
+                <span className="font-mono text-xs sm:text-sm text-slate-900">
+                  <strong className={item.theme.textColor}>{item.num}. {item.title}</strong> – {item.fullName}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
