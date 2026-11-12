@@ -13,7 +13,8 @@ export default function PresentationPage() {
   const [controlsVisible, setControlsVisible] = useState<boolean>(true);
 
   const totalSlides = slides.length;
-  const currentSlide = slides[currentIndex];
+  const safeIndex = Math.min(Math.max(currentIndex, 0), totalSlides - 1);
+  const currentSlide = slides[safeIndex];
 
   // Touch swipe handling for mobile
   const touchStartX = useRef<number | null>(null);
@@ -37,21 +38,21 @@ export default function PresentationPage() {
     };
   }, []);
 
-  // Navigation handlers
+  // Navigation handlers (Stop at first and last slide like PowerPoint instead of looping first page to the end)
   const goToNext = useCallback(() => {
     setDirection(1);
-    setCurrentIndex((prev) => (prev + 1 < totalSlides ? prev + 1 : 0));
+    setCurrentIndex((prev) => (prev + 1 < totalSlides ? prev + 1 : prev));
   }, [totalSlides]);
 
   const goToPrev = useCallback(() => {
     setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 >= 0 ? prev - 1 : totalSlides - 1));
-  }, [totalSlides]);
+    setCurrentIndex((prev) => (prev - 1 >= 0 ? prev - 1 : 0));
+  }, []);
 
   const goToSlide = useCallback((index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
-  }, [currentIndex]);
+    setDirection(index > safeIndex ? 1 : -1);
+    setCurrentIndex(Math.min(Math.max(index, 0), totalSlides - 1));
+  }, [safeIndex, totalSlides]);
 
   const toggleFullscreen = () => {
     if (typeof document === "undefined") return;
@@ -143,7 +144,9 @@ export default function PresentationPage() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
-  const progressPercentage = ((currentIndex + 1) / totalSlides) * 100;
+  const progressPercentage = ((safeIndex + 1) / totalSlides) * 100;
+  const isFirstSlide = safeIndex === 0;
+  const isLastSlide = safeIndex === totalSlides - 1;
 
   return (
     <main
@@ -161,14 +164,6 @@ export default function PresentationPage() {
           direction={direction}
           totalSlides={totalSlides}
           onSelectSlide={goToSlide}
-          onRestart={() => goToSlide(0)}
-          onExit={() => {
-            if (typeof document !== "undefined" && document.fullscreenElement && document.exitFullscreen) {
-              document.exitFullscreen().catch(() => {});
-              setIsFullscreen(false);
-            }
-            goToSlide(0);
-          }}
         />
       </div>
 
@@ -182,21 +177,26 @@ export default function PresentationPage() {
           {/* Previous Arrow */}
           <button
             onClick={goToPrev}
+            disabled={isFirstSlide}
             title="Previous Slide (← / Swipe Right)"
-            className="p-1.5 sm:p-2 rounded-full hover:bg-slate-100 text-slate-700 active:scale-90 transition cursor-pointer shrink-0"
+            className={`p-1.5 sm:p-2 rounded-full transition shrink-0 ${
+              isFirstSlide
+                ? "text-slate-300 cursor-not-allowed"
+                : "hover:bg-slate-100 text-slate-700 active:scale-90 cursor-pointer"
+            }`}
           >
             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
           {/* Compact Slide Number Counter for Mobile Phones */}
           <div className="sm:hidden font-mono text-xs font-bold text-slate-800 px-2 shrink-0">
-            {String(currentIndex + 1).padStart(2, "0")} / {String(totalSlides).padStart(2, "0")}
+            {String(safeIndex + 1).padStart(2, "0")} / {String(totalSlides).padStart(2, "0")}
           </div>
 
           {/* Slide Dots Indicator for Tablets & Desktops */}
           <div className="hidden sm:flex items-center space-x-1 sm:space-x-1.5 px-1 sm:px-2 shrink-0">
             {slides.map((s, idx) => {
-              const isActive = idx === currentIndex;
+              const isActive = idx === safeIndex;
               return (
                 <button
                   key={s.id}
@@ -219,8 +219,13 @@ export default function PresentationPage() {
           {/* Next Arrow */}
           <button
             onClick={goToNext}
+            disabled={isLastSlide}
             title="Next Slide (→ / Swipe Left)"
-            className="p-1.5 sm:p-2 rounded-full hover:bg-slate-100 text-slate-700 active:scale-90 transition cursor-pointer shrink-0"
+            className={`p-1.5 sm:p-2 rounded-full transition shrink-0 ${
+              isLastSlide
+                ? "text-slate-300 cursor-not-allowed"
+                : "hover:bg-slate-100 text-slate-700 active:scale-90 cursor-pointer"
+            }`}
           >
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>

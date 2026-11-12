@@ -162,25 +162,27 @@ export default function SlideCard({
               </motion.p>
             </div>
 
-            {/* Slide 1 Top Definition Box (First Page) */}
-            <AnimatePresence mode="popLayout">
-              {isSlideOne && (
-                <motion.div
-                  key="slide-1-intro-box"
-                  initial={{ opacity: 0, scale: 0.96, y: -12 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: -15 }}
-                  transition={{ type: "spring", stiffness: 180, damping: 22 }}
-                  className={`relative p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-sky-50/60 via-white to-indigo-50/45 border ${themeStyles.border} shadow-sm overflow-hidden group`}
-                >
-                  <TechEdBoxDecoration variant="wide" accent="cyan" />
-                  <div className={`absolute top-0 bottom-0 left-0 w-1.5 z-10 ${themeStyles.accentBar}`} />
-                  <p className="relative z-10 text-xs sm:text-sm md:text-base text-slate-800 font-sans leading-relaxed font-normal pl-2 sm:pl-3">
-                    &ldquo;{slide.content}&rdquo;
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Slide 1 Top Definition Box (First Page - Dedicated Top Anchor Slot) */}
+            <div className="w-full">
+              <AnimatePresence mode="wait">
+                {isSlideOne && (
+                  <motion.div
+                    key="slide-1-intro-box"
+                    initial={{ opacity: 0, scale: 0.96, y: -12 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -15 }}
+                    transition={{ type: "spring", stiffness: 180, damping: 22 }}
+                    className={`relative p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-sky-50/60 via-white to-indigo-50/45 border ${themeStyles.border} shadow-sm overflow-hidden group`}
+                  >
+                    <TechEdBoxDecoration variant="wide" accent="cyan" />
+                    <div className={`absolute top-0 bottom-0 left-0 w-1.5 z-10 ${themeStyles.accentBar}`} />
+                    <p className="relative z-10 text-xs sm:text-sm md:text-base text-slate-800 font-sans leading-relaxed font-normal pl-2 sm:pl-3">
+                      &ldquo;{slide.content}&rdquo;
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* The Persistent Landscape TPACK Picture (Morphs & Zooms onto the active region) */}
             <motion.div
