@@ -16,11 +16,11 @@ export const slides: SlideData[] = [
   {
     id: 1,
     tpackKey: "ALL",
-    title: "Basic Concepts in ICT & TPACK",
+    title: "TPACK",
     subtitle: "The TPACK Model Framework (Mishra & Koehler, 2006)",
     content:
       "The TPACK model framework was developed by Punya Mishra and Matthew J. Koehler in 2006. This framework focuses on the integration of technological knowledge (TK), pedagogical knowledge (PK), and content knowledge (CK). It highlights how these three areas work together to help teachers use technology effectively and improve teaching and learning in the classroom.",
-    category: "Foundations & Frameworks",
+    category: "TPACK Framework",
     accent: "cyan",
     icon: "Cpu"
   },
@@ -107,16 +107,5 @@ export const slides: SlideData[] = [
     category: "The Seven Components of TPACK",
     accent: "cyan",
     icon: "Globe"
-  },
-  {
-    id: 9,
-    tpackKey: "ALL",
-    title: "Thank You!",
-    subtitle: "End of Presentation // Q&A & Discussion",
-    content:
-      "Thank you for your time and attention!",
-    category: "Conclusion",
-    accent: "cyan",
-    icon: "GraduationCap"
   }
 ];

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ICT & TPACK | Presentation",
-  description: "An interactive presentation on Basic Concepts in ICT & TPACK",
+  title: "TPACK | Presentation",
+  description: "An interactive presentation on the TPACK Model Framework",
 };
 
 export default function RootLayout({

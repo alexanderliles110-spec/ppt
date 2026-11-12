@@ -6,7 +6,6 @@ import { SlideData, TPACKKey } from "../data/slides";
 import SlideIcon from "./SlideIcon";
 import LandscapeTPACKDiagram from "./LandscapeTPACKDiagram";
 import TechEdBoxDecoration from "./TechEdBoxDecoration";
-import { RotateCcw, LogOut } from "lucide-react";
 
 interface SlideCardProps {
   slide: SlideData;
@@ -43,9 +42,7 @@ const popFromPictureOffsets: Record<Exclude<TPACKKey, "ALL">, { x: number; y: nu
 export default function SlideCard({
   slide,
   totalSlides,
-  onSelectSlide,
-  onRestart,
-  onExit
+  onSelectSlide
 }: SlideCardProps) {
   const themeStyles = {
     cyan: {
@@ -75,7 +72,6 @@ export default function SlideCard({
   }[slide.accent];
 
   const isSlideOne = slide.id === 1;
-  const isThankYouSlide = slide.id === totalSlides;
   const originOffset =
     slide.tpackKey !== "ALL"
       ? popFromPictureOffsets[slide.tpackKey]
@@ -201,7 +197,7 @@ export default function SlideCard({
 
             {/* Slides 2–8: The Discussion Box that Pops/Comes FORWARD directly from the active circle in the Picture! */}
             <AnimatePresence mode="popLayout">
-              {!isSlideOne && !isThankYouSlide && (
+              {!isSlideOne && (
                 <motion.div
                   key={`forward-discussion-${slide.id}`}
                   initial={{
@@ -257,42 +253,6 @@ export default function SlideCard({
                   </div>
                 </motion.div>
               )}
-
-              {/* Final Slide (Thank You! + Restart / Exit Buttons) */}
-              {isThankYouSlide && (
-                <motion.div
-                  key="thank-you-box"
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                  transition={{ type: "spring", stiffness: 160, damping: 20 }}
-                  className={`relative p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-white via-sky-50/60 to-indigo-50/55 border-2 ${themeStyles.border} shadow-xl overflow-hidden text-center space-y-4`}
-                >
-                  <TechEdBoxDecoration variant="wide" accent="cyan" />
-
-                  <p className="relative z-10 text-base sm:text-xl md:text-2xl text-slate-800 font-mono font-bold">
-                    {slide.content}
-                  </p>
-
-                  <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-1">
-                    <button
-                      onClick={onRestart}
-                      className="flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-mono text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 transition active:scale-95 cursor-pointer"
-                    >
-                      <RotateCcw className="w-4 h-4" />
-                      <span>Restart Presentation</span>
-                    </button>
-
-                    <button
-                      onClick={onExit}
-                      className="flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono text-xs sm:text-sm font-bold shadow-md transition active:scale-95 cursor-pointer"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Exit Deck</span>
-                    </button>
-                  </div>
-                </motion.div>
-              )}
             </AnimatePresence>
           </div>
 
@@ -301,7 +261,7 @@ export default function SlideCard({
             <div className="flex items-center space-x-2">
               <span className={`w-2.5 h-2.5 rounded-full ${themeStyles.accentBar}`} />
               <span className="tracking-wider uppercase text-slate-500 font-medium">
-                Basic Concepts in ICT &amp; TPACK
+                TPACK
               </span>
             </div>
 
