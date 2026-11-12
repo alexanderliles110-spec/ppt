@@ -1,4 +1,4 @@
-export type TPACKKey = "ALL" | "CK" | "PK" | "TK" | "PCK" | "TCK" | "TPK" | "TPACK";
+export type TPACKKey = "CLEAR" | "ALL" | "CK" | "PK" | "TK" | "PCK" | "TCK" | "TPK" | "TPACK";
 
 export interface SlideData {
   id: number;
@@ -15,6 +15,16 @@ export interface SlideData {
 export const slides: SlideData[] = [
   {
     id: 1,
+    tpackKey: "CLEAR",
+    title: "",
+    subtitle: "",
+    content: "",
+    category: "",
+    accent: "cyan",
+    icon: "Cpu"
+  },
+  {
+    id: 2,
     tpackKey: "ALL",
     title: "TPACK",
     subtitle: "The TPACK Model Framework (Mishra & Koehler, 2006)",
@@ -25,7 +35,7 @@ export const slides: SlideData[] = [
     icon: "Cpu"
   },
   {
-    id: 2,
+    id: 3,
     componentNum: 1,
     tpackKey: "CK",
     title: "The Seven Components of TPACK",
@@ -37,7 +47,7 @@ export const slides: SlideData[] = [
     icon: "BookOpen"
   },
   {
-    id: 3,
+    id: 4,
     componentNum: 2,
     tpackKey: "PK",
     title: "The Seven Components of TPACK",
@@ -49,7 +59,7 @@ export const slides: SlideData[] = [
     icon: "GraduationCap"
   },
   {
-    id: 4,
+    id: 5,
     componentNum: 3,
     tpackKey: "TK",
     title: "The Seven Components of TPACK",
@@ -61,7 +71,7 @@ export const slides: SlideData[] = [
     icon: "Cpu"
   },
   {
-    id: 5,
+    id: 6,
     componentNum: 4,
     tpackKey: "PCK",
     title: "The Seven Components of TPACK",
@@ -73,7 +83,7 @@ export const slides: SlideData[] = [
     icon: "Layers"
   },
   {
-    id: 6,
+    id: 7,
     componentNum: 5,
     tpackKey: "TCK",
     title: "The Seven Components of TPACK",
@@ -85,7 +95,7 @@ export const slides: SlideData[] = [
     icon: "Code"
   },
   {
-    id: 7,
+    id: 8,
     componentNum: 6,
     tpackKey: "TPK",
     title: "The Seven Components of TPACK",
@@ -97,7 +107,7 @@ export const slides: SlideData[] = [
     icon: "Sparkles"
   },
   {
-    id: 8,
+    id: 9,
     componentNum: 7,
     tpackKey: "TPACK",
     title: "The Seven Components of TPACK",

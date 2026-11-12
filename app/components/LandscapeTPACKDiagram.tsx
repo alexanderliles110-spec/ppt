@@ -10,7 +10,7 @@ interface LandscapeTPACKDiagramProps {
   onSelectKey?: (key: TPACKKey) => void;
 }
 
-const tpackPills: { key: Exclude<TPACKKey, "ALL">; label: string; color: string }[] = [
+const tpackPills: { key: Exclude<TPACKKey, "CLEAR" | "ALL">; label: string; color: string }[] = [
   { key: "CK", label: "CK – Content Knowledge", color: "border-cyan-300 bg-cyan-50/70 text-cyan-900" },
   { key: "PK", label: "PK – Pedagogical Knowledge", color: "border-amber-300 bg-amber-50/70 text-amber-900" },
   { key: "TK", label: "TK – Technological Knowledge", color: "border-pink-300 bg-pink-50/70 text-pink-900" },
@@ -31,6 +31,7 @@ export default function LandscapeTPACKDiagram({
 
   // PowerPoint Morph Camera Transforms: Zooms & Pans smoothly to bring the active region forward
   const cameraTargets: Record<TPACKKey, { scale: number; x: number; y: number }> = {
+    CLEAR: { scale: 1, x: 0, y: 0 },
     ALL: { scale: 1, x: 0, y: 0 },
     CK: { scale: 1.22, x: -75, y: -22 },
     PK: { scale: 1.22, x: 75, y: -22 },
@@ -43,7 +44,7 @@ export default function LandscapeTPACKDiagram({
 
   // Coordinates of each region in the SVG (used for 3D pop-forward badge & projection line)
   const regionCenters: Record<
-    Exclude<TPACKKey, "ALL">,
+    Exclude<TPACKKey, "CLEAR" | "ALL">,
     { cx: number; cy: number; rx: number; ry: number; color: string; short: string; full: string }
   > = {
     CK: { cx: 555, cy: 215, rx: 68, ry: 40, color: "#06b6d4", short: "1. CK", full: "Content Knowledge" },
@@ -56,8 +57,9 @@ export default function LandscapeTPACKDiagram({
   };
 
   const cam = cameraTargets[activeKey] || cameraTargets.ALL;
-  const isAll = activeKey === "ALL";
-  const activeRegion = activeKey !== "ALL" ? regionCenters[activeKey] : null;
+  const isAll = activeKey === "ALL" || activeKey === "CLEAR";
+  const activeRegion =
+    activeKey !== "ALL" && activeKey !== "CLEAR" ? regionCenters[activeKey] : null;
 
   const getRegionOpacity = (region: TPACKKey) => {
     if (isAll) return 1;
@@ -471,7 +473,7 @@ export default function LandscapeTPACKDiagram({
               Contexts
             </text>
 
-            {/* 3D Pop-Forward Node & Projection Beam when a specific component is discussed (Slides 2–8) */}
+            {/* 3D Pop-Forward Node & Projection Beam when a specific component is discussed */}
             {activeRegion && (
               <motion.g
                 initial={false}
@@ -543,19 +545,39 @@ export default function LandscapeTPACKDiagram({
           </motion.g>
         </svg>
 
-        {/* Bottom 7-Abbreviation Strip on Slide 1 */}
-        {isAll && (
-          <div className="mt-2 pt-2 border-t border-slate-200/70 w-full flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+        {/* Bottom 7-Abbreviation Strip with Staggered Pop-Up ("Mangsulpot") Animation */}
+        {activeKey === "ALL" && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.07, delayChildren: 0.25 }
+              }
+            }}
+            className="mt-2 pt-2 border-t border-slate-200/70 w-full flex flex-wrap items-center justify-center gap-1.5 sm:gap-2"
+          >
             {tpackPills.map((pill) => (
-              <button
+              <motion.button
                 key={pill.key}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.5, y: 18 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    transition: { type: "spring", stiffness: 260, damping: 18 }
+                  }
+                }}
                 onClick={() => handleSelect(pill.key)}
                 className={`px-2.5 py-1 rounded-lg border font-mono text-[11px] sm:text-xs font-bold transition hover:scale-105 cursor-pointer shadow-2xs ${pill.color}`}
               >
                 {pill.label}
-              </button>
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </motion.div>
